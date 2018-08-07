@@ -1,0 +1,70 @@
+<html>
+
+<head>
+</head>
+
+<body>
+  <div id="whatever"></div>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+  <script>
+    //these are the variables that point to useful numbers
+
+
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAjwSCpOvLPgYcFr26V3gmfwJlGb-VtWAs",
+      authDomain: "greenupvermont-de02b.firebaseapp.com",
+      databaseURL: "https://greenupvermont-de02b.firebaseio.com",
+      projectId: "greenupvermont-de02b",
+      storageBucket: "greenupvermont-de02b.appspot.com",
+      messagingSenderId: "439621369113"
+    };
+    const email = "WillyNillyLoman@gmail.com"
+    const password = "burlingtonCA"
+
+    firebase.initializeApp(config);
+    var database = firebase.database();
+
+    // var teams = firebase.database().ref('teams');
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+    let trashDropsObject;
+    var trashDrops = firebase
+      .database()
+      .ref('trashDrops/')
+      .once('value')
+      .then((snapshot) => {
+        console.log(snapshot.val());
+        trashDropsObject = snapshot.val()
+        return trashDropsObject;
+
+      })
+      .then((trashDropsObject) => {
+        bagCountArray = []
+        for (var thing in trashDropsObject) {
+          bagCountArray.push(trashDropsObject[thing].bagCount)
+
+          console.log(thing)
+        }
+        console.log(bagCountArray)
+        totalBagsDropped = bagCountArray.reduce(function (total, currentValue) {
+          return total + currentValue;
+        }, 0);
+
+        console.log(totalBagsDropped);
+        document.getElementById("whatever").textContent = "Total bags dropped in VT: " + totalBagsDropped
+
+      })
+
+
+
+
+  </script>
+</body>
+
+</html>
