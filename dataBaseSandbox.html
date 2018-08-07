@@ -4,11 +4,16 @@
 </head>
 
 <body>
-  <div id="whatever"></div>
+  <div id="bagsDiv"></div>
+  <div id="teamsDiv"></div>
+  <div id="profilesDiv"></div>
+  
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
   <script>
     //these are the variables that point to useful numbers
-
+    let totalBagsDropped;
+    let totalTeams;
+    let totalProfiles;
 
     // Initialize Firebase
     var config = {
@@ -34,33 +39,62 @@
       // ...
     });
     let trashDropsObject;
-    var trashDrops = firebase
-      .database()
-      .ref('trashDrops/')
-      .once('value')
-      .then((snapshot) => {
-        console.log(snapshot.val());
-        trashDropsObject = snapshot.val()
-        return trashDropsObject;
+    let bagCountArray = []
 
-      })
-      .then((trashDropsObject) => {
-        bagCountArray = []
-        for (var thing in trashDropsObject) {
-          bagCountArray.push(trashDropsObject[thing].bagCount)
+    function getTotalBags() {
+      var trashDrops = firebase
+        .database()
+        .ref('trashDrops/')
+        .on('value', function (snapshot) {
+          let bagCountArray = []
+          trashDropsObject = snapshot.val()
+          for (var key in trashDropsObject) {
+            bagCountArray.push(trashDropsObject[key].bagCount)
+          }
+          totalBagsDropped = bagCountArray.reduce(function (total, currentValue) {
+            return total + currentValue;
+          }, 0);
+          document.getElementById("bagsDiv").textContent = "Total bags dropped in VT: " + totalBagsDropped
 
-          console.log(thing)
-        }
-        console.log(bagCountArray)
-        totalBagsDropped = bagCountArray.reduce(function (total, currentValue) {
-          return total + currentValue;
-        }, 0);
+        })
+    }
 
-        console.log(totalBagsDropped);
-        document.getElementById("whatever").textContent = "Total bags dropped in VT: " + totalBagsDropped
+    function getTotalProfiles() {
+      var teams = firebase
+        .database()
+        .ref('profiles/')
+        .on('value', function (snapshot) {
+          let profilesCountArray = []
+          profilesCountObject = snapshot.val()
+          for (var key in profilesCountObject) {
+            profilesCountArray.push(profilesCountObject[key])
+          }
+          totalProfiles = profilesCountArray.length
+          document.getElementById("profilesDiv").textContent = "Total profiles in VT: " + totalProfiles
 
-      })
+        })
+    }
 
+    function getTotalTeams(){
+      var profiles = firebase
+        .database()
+        .ref('teams/')
+        .on('value', function (snapshot) {
+          let teamsCountArray = []
+          teamCountObject = snapshot.val()
+          for (var key in teamCountObject) {
+            teamsCountArray.push(teamCountObject[key])
+          }
+          totalTeams = teamsCountArray.length
+          document.getElementById("teamsDiv").textContent = "Total teams in VT: " + totalTeams
+
+        })
+    }
+
+   
+    getTotalBags();
+    getTotalTeams();
+    getTotalProfiles();
 
 
 
