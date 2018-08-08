@@ -1,0 +1,26 @@
+header{
+    background-color: #006f3b;
+}
+.checkBoxColumn{
+    background-color: gray; 
+}
+
+.statsColumn{
+    background-color:darkkhaki; 
+}
+
+.mapColumn{
+    background-color: darkcyan;
+}
+.teamCheck{
+    padding-bottom: 16px
+}
+
+.volunteerCheck {
+    padding-bottom: 16px
+}
+
+.trashCheck{
+    padding-bottom: 16px
+}
+
