@@ -79,6 +79,10 @@ header{
 .theMapHeader {
     text-align: center;
 }
+#mapid{
+        height:700px;
+        width:700px;
+}
 form{
     display: flex;
     justify-content: space-around;
