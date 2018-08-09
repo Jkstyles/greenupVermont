@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <div id="div">
+        <canvas id="myChart" height="100px"></canvas>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'pie',
+
+            // The data for our dataset
+            data: {
+                labels: ['Addison', 'Bennington', 'Caledonia', 'Chittenden', 'Essex', 'Franklin', 'Grand Isle', 'Lamoille', 'Orange', 'Orleans', 'Rutland', 'Washington', 'Windham', 'Windsor'],
+                datasets: [{
+                    label: "Where bags were dropped",
+                    backgroundColor: ['rgb(0%, 0%, 0%)','rgb(20%, 0%, 0%)','rgb(40%, 0%, 0%)','rgb(60%, 0%, 0%)','rgb(80%, 0%, 0%)','rgb(100%, 0%, 0%)','rgb(100%, 20%, 0%)','rgb(100%, 40%, 0%)','rgb(100%, 60%, 0%)','rgb(100%, 80%, 0%)','rgb(100%, 100%, 0%)','rgb(100%, 100%, 20%)','rgb(100%, 100%, 40%)','rgb(100%, 100%, 60%)'],
+                    borderColor: 'rgb(0,0,0)',
+                    data: [1, 0, 0, 4, 5, 6, 7, 8, 9, 10, 0, 12, 0, 14],
+                   
+                    removeZeros: function() { for (var i = 0; i < chart.data.labels.length; i++) {
+                        if (chart.data.datasets[0].data[i] === 0 || undefined) {
+                            delete chart.data.datasets[0].data[i];
+                            delete chart.data.datasets[0].backgroundColor[i];
+                            delete chart.data.labels[i];
+                        }
+                    }
+                     }
+                }]
+            },
+
+            // Configuration options go here
+            // options: {
+            //     height: 100,
+
+            // }
+        });
+        // var ctx = document.getElementById("myChart");
+        // ctx.size = 50;
+        let vermontCountiesArray = ['Addison','Bennington', 'Caledonia', 'Chittenden', 'Essex', 'Franklin', 'Grand Isle', 'Lamoille', 'Orange', 'Orleans', 'Rutland', 'Washington', 'Windham', 'Windsor']
+          chart.data.datasets[0].removeZeros();
+    </script> 
+</body>
+
+</html>
