@@ -22,9 +22,43 @@ header{
     grid-row-end: 5;
     background-color: blanchedalmond;
 } 
-.checkBoxes {
 
+.dropbtn {
+    background-color: rgb(17, 97, 150);
+    color: azure;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
 }
+.dropbtn:hover, .dropbtn:focus {
+    background-color: rgb(20, 100, 153);
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.show {display:block;}
+
 .statsColumn{
     grid-column-start: 3;
     grid-column-end: 4;
@@ -41,6 +75,7 @@ header{
     background-color: darkcyan;
 }
 .theMap {
+    
     text-align: center;
 }
 
