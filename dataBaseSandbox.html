@@ -1,25 +1,38 @@
 <html>
 
 <head>
+  <style>
+    #mapid{
+      height:700px;
+      width:700px;
+    }
+  </style>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
     crossorigin="" />
 
   <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-    crossorigin="">
-
-    </script>
+    crossorigin=""></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.js'></script>
   <script src="Simplified_County_Boundaries.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+  <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
+  <script src='dataObjects/countyClass.js'></script>
+  <script src='dataObjects/vermontObject.js'></script>
+
 </head>
 
 <body>
   <div id="bagsDiv"></div>
   <div id="teamsDiv"></div>
   <div id="profilesDiv"></div>
+  <div id="mapid"></div>
 
-  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
-  <scipt src="countyMap.html"></scipt>
-  <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
+
+
+
+
   <script>
+    
     //these are the variables that point to useful numbers
     let totalBagsDropped;
     let totalTeams;
@@ -40,178 +53,74 @@
     firebase.initializeApp(config);
     var database = firebase.database();
 
-    // var teams = firebase.database().ref('teams');
-
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-      // Handle Errors here.
+      // ToDo: handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
     });
-    let trashDropsObject;
-    let bagCountArray = [];
-
-    let addisonCountyBagsArray = [];
-    let benningtonCountyBagsArray = [];
-    let caledoniaCountyBagsArray = [];
-    let chittendenCountyBagsArray = [];
-    let essexCountyBagsArray = [];
-    let franklinCountyBagsArray = [];
-    let grandIsleCountyBagsArray = [];
-    let lamoilleCountyBagsArray = [];
-    let orangeCountyBagsArray = [];
-    let orleansCountyBagsArray = [];
-    let rutlandCountyBagsArray = [];
-    let washingtonCountyBagsArray = [];
-    let windhamCountyBagsArray = [];
-    let windsorCountyBagsArray = [];
-
-
-
-    function getTotalBags() {
-      var trashDrops = firebase
-        .database()
-        .ref('trashDrops/')
-        .on('value', function (snapshot) {
-          let bagCountArray = []
-          trashDropsObject = snapshot.val()
-          for (var key in trashDropsObject) {
-            bagCountArray.push(trashDropsObject[key].bagCount)
-          }
-          totalBagsDropped = bagCountArray.reduce(function (total, currentValue) {
-            return total + currentValue;
-          }, 0);
-          document.getElementById("bagsDiv").textContent = "Total bags dropped in VT: " + totalBagsDropped
-
-        })
-    }
-
-    function getTotalProfiles() {
-      var teams = firebase
-        .database()
-        .ref('profiles/')
-        .on('value', function (snapshot) {
-          let profilesCountArray = []
-          profilesCountObject = snapshot.val()
-          for (var key in profilesCountObject) {
-            profilesCountArray.push(profilesCountObject[key])
-          }
-          totalProfiles = profilesCountArray.length
-          document.getElementById("profilesDiv").textContent = "Total profiles in VT: " + totalProfiles
-
-        })
-    }
-
-    function getTotalTeams() {
-      var profiles = firebase
-        .database()
-        .ref('teams/')
-        .on('value', function (snapshot) {
-          let teamsCountArray = []
-          teamCountObject = snapshot.val()
-          for (var key in teamCountObject) {
-            teamsCountArray.push(teamCountObject[key])
-          }
-          totalTeams = teamsCountArray.length
-          document.getElementById("teamsDiv").textContent = "Total teams in VT: " + totalTeams
-
-        })
-    }
-
+    let vermont = new Vermont
     function buildCountyBagsArrays() {
+      console.log('trash populate start')
       var trashDrops = firebase
         .database()
         .ref('trashDrops/')
         .on('value', function (snapshot) {
           trashDropsObject = snapshot.val()
+          console.log('data retrieved')
+          for (let county in vermont.counties) {
+            vermont.counties[county].bagDrops = Array(0)
+          }
           for (var key in trashDropsObject) {
             let countyBoundaries = L.geoJSON(countyPolygons);
+            // put the coordinates of the trash drop object into a conveinient form
             let keyCoordinates = [trashDropsObject[key].location.longitude, trashDropsObject[key].location.latitude]
-            var results = leafletPip.pointInLayer(keyCoordinates, countyBoundaries)
-            console.log(trashDropsObject[key])
-
-            if (results[0].feature.properties.CNTYNAME === 'ADDISON') {
-              addisonCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("addison: " + addisonCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'BENNINGTON') {
-              benningtonCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("bennington: " + benningtonCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'CALEDONIA') {
-              caledoniaCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("caledonia: " + caledoniaCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'CHITTENDEN') {
-              chittendenCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("chittenden: " + chittendenCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'ESSEX') {
-              essexCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("essex: " + essexCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'FRANKLIN') {
-              franklinCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("Franklin:" + franklinCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'GRANDISLE') {
-              grandIsleCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("grandIsle: " + grandIsleCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'LAMOILLE') {
-              lamoilleCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("lamoille: " + lamoilleCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'ORANGE') {
-              orangeCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("orange: " + orangeCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'ORLEANS') {
-              orleansCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("orleans: " + orleansCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'RUTLAND') {
-              rutlandCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log('rutland: ' + rutlandCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'WASHINGTON') {
-              washingtonCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("washington: " + washingtonCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'WINDHAM') {
-              windhamCountyBagsArray.push(trashDropsObject[key].bagCount);
-              //console.log("windham: " + windhamCountyBagsArray)
-            }
-            else if (results[0].feature.properties.CNTYNAME === 'WINDSOR') {
-              windsorCountyBagsArray.push(trashDropsObject[key].bagCount);
-              // console.log("windsor: " + windsorCountyBagsArray)
+           // figure out which county the point is in, then cleans up that county name so it's usable in the next function
+            var resultsArray = leafletPip.pointInLayer(keyCoordinates, countyBoundaries, true)
+            var results = resultsArray[0].feature.properties.CNTYNAME.toLowerCase()
+            //looks through the list of counties in our vermont object, finds the one whose name matches the one the trash drop is in. Then pushes the trash drop into an array in that county object.
+            for(let county in vermont.counties){
+              if(results === vermont.counties[county].name){
+                vermont.counties[county].bagDrops.push(trashDropsObject[key])
+              }            
             }
           }
-            (addisonCountyBagsArray.length)
-            (benningtonCountyBagsArray.length)
-            (caledoniaCountyBagsArray.length)
-            (chittendenCountyBagsArray.length)
-            (essexCountyBagsArray.length)
-            (franklinCountyBagsArray.length)
-            (grandIsleCountyBagsArray.length)
-            (lamoilleCountyBagsArray.length)
-            (orangeCountyBagsArray.length)
-            (orleansCountyBagsArray.length)
-            (rutlandCountyBagsArray.length)
-            (washingtonCountyBagsArray.length)
-            (windhamCountyBagsArray.length)
-            (windsorCountyBagsArray.length)
+          //to do: calculateTownBagCount
+          //to do: calculateCountyBagCount
+          console.log('populate finished.')
+          console.log(vermont)
         })
     }
 
-
-    getTotalBags();
-    getTotalTeams();
-    getTotalProfiles();
     buildCountyBagsArrays();
 
+ var mymap = L.map('mapid').setView([44.0423, -72.6034], 8);
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19,
+    id: 'mapbox.streets',
+}).addTo(mymap);
+
+//The beginnings of a function that makes the choropleth.
+let counties =countyPolygons.features
+for (county in counties) {
+  counties[county].properties.bagCount = bagCountOf(county)
+}
+let countyBoundaries = L.geoJSON(countyPolygons);
+countyBoundaries.addTo(mymap)
+
+//ToDo: write a function in data structure to calculate total bag drops per county. Call it to get bag count for chloropleth.
+function bagCountOf(county) {
+  
+} 
+
+// each of the counties in countyBoundaries already has a bounding box, addisons is at the variable below.
+// this would make zooming easy when we get around to that.
+mymap.fitBounds(countyBoundaries._layers['51']._bounds)
 
   </script>
+
 </body>
 
 </html>
