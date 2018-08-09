@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Geeen Up Dashboard</title>
+    <script src="src/react.development.js"></script>
+    <script src="src/react-dom.development.js"></script>
+    <script src="src/babel.min.js"></script>
+  </head>
+
+  <body class="container">
+    <Title>Green Up Vermont Dashboard</Title>
+    <header>
+        <img src="./GreenupLogo.png" alt="Greenup Logo">
+    </header>
+
+    <div class='sideBar'>
+
+        <div class="checkBoxes">
+            <div id="teamCheck">
+                <input type="checkbox" id="teamCheck">
+                <label for="customCheck1">Total Number of Teams</label>
+            </div>
+            <div id="volunteerCheck">
+                <input type="checkbox">
+                <label for="customCheck2">Total Number of Volunteers</label>
+            </div>
+            <div id="trashCheck">
+                <input type="checkbox">
+                <label for="customCheck3">Total Number of Trash Drops</label>
+            </div>
+        </div>
+
+    </div>
+    <div class="mapColumn">
+        <div class="theMap"> map
+        </div>
+    </div>
+
+    <div class="statsColumn"> stats</div>
+
+      <div id="output"></div>
+    <script type="text/babel">
+      ReactDOM.render(
+      <h1>Hello, local React!</h1>,
+      document.getElementById('output')
+      );
+    </script>
+  </body>
+</html>
