@@ -2,9 +2,11 @@
 <html lang="en">
 
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
         crossorigin="" />
-
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
         crossorigin=""></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.js'></script>
@@ -18,14 +20,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Green Up Dashboard</title>
+    <title>Green Up Vermont Dashboard</title>
 </head>
 
 <body class="container">
-    <Title>Green Up Vermont Dashboard</Title>
     <header>
         <img src="./GreenupLogo.png" alt="Greenup Logo">
     </header>
+    <h1>Green Up Vermont Dashboard</h1>
 
     <div class='sideBar'>
 
@@ -51,7 +53,7 @@
 
         <div class="checkBoxes">
             <div id="teamCheck">
-                <input type="checkbox" id="teamCheck">
+                <input type="checkbox">
                 <label for="customCheck1">Total Number of Teams</label>
             </div>
             <div id="volunteerCheck">
@@ -69,7 +71,7 @@
 
     <div class="mapColumn">
 
-        <div class="theMapHeader"> MAP </div>
+        <div class="theMapHeader"></div>
 
         <form>
             <div>
@@ -93,8 +95,12 @@
 
     </div>
 
-    <div class="statsColumn"> stats</div>
+    <div class="statsColumn">
+            <canvas id="myChart" width="400" height="400"></canvas>
 
+
+    </div>
+    <script src='charts.js'></script>
     <script src="dropdown.js"></script>
     <script src="index.js"></script>
 

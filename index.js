@@ -83,4 +83,5 @@ function bagCountOf(county) {
 
 // each of the counties in countyBoundaries already has a bounding box, addisons is at the variable below.
 // this would make zooming easy when we get around to that.
-mymap.fitBounds(countyBoundaries._layers['51']._bounds)
+
+// mymap.fitBounds(countyBoundaries._layers['51']._bounds)
