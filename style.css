@@ -4,24 +4,29 @@
     grid-template-rows: 1fr 3fr 3fr 3fr;
     margin: 0;
     overflow: hidden;
-  }
-header, image {
+}
+
+header,
+image {
     padding: 5px;
 }
-header{
+
+header {
     grid-column-start: 1;
     grid-column-end: span 3;
     grid-row-start: 1;
     grid-row-end: 2;
     background-color: #006f3b;
 }
-.container, .sideBar {
+
+.container,
+.sideBar {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 5;
     background-color: blanchedalmond;
-} 
+}
 
 .dropbtn {
     background-color: rgb(17, 97, 150);
@@ -31,9 +36,12 @@ header{
     border: none;
     cursor: pointer;
 }
-.dropbtn:hover, .dropbtn:focus {
+
+.dropbtn:hover,
+.dropbtn:focus {
     background-color: rgb(20, 100, 153);
 }
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -44,7 +52,7 @@ header{
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -55,36 +63,50 @@ header{
     display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd}
+.dropdown-content a:hover {
+    background-color: #ddd
+}
 
-.show {display:block;}
+.show {
+    display: block;
+}
 
-.statsColumn{
+.statsColumn {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 5;
-    background-color:darkkhaki; 
+    background-color: darkkhaki;
 }
 
-.mapColumn{
- 
-
+.mapColumn {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 5;
     background-color: darkcyan;
 }
+
 .theMapHeader {
     text-align: center;
 }
-form{
+
+#mapid {
+    padding: 10px;
+    z-index: 10;
+    height: 700px;
+    width: 700px;
+}
+.mappperthewrapper{
+    padding: 20px;
+}
+
+form {
     display: flex;
     justify-content: space-around;
 }
 
-#teamCheck{
+#teamCheck {
     padding-top: 16px;
     padding-bottom: 16px
 }
@@ -93,7 +115,6 @@ form{
     padding-bottom: 16px
 }
 
-#trashCheck{
+#trashCheck {
     padding-bottom: 16px
 }
-
