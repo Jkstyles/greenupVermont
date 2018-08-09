@@ -44,7 +44,6 @@ class Vermont {
                 }
             }
             //to do: calculateTownBagCount
-            //to do: calculateCountyBagCount
             console.log('populate finished.')
             this.getBagStats()
             console.log(vermont)
