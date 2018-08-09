@@ -18,6 +18,7 @@
   <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
   <script src='dataObjects/countyClass.js'></script>
   <script src='dataObjects/vermontObject.js'></script>
+  <script src='townPolygons.js'></script>
 
 </head>
 
@@ -60,39 +61,7 @@
       // ...
     });
     let vermont = new Vermont
-    function buildCountyBagsArrays() {
-      console.log('trash populate start')
-      var trashDrops = firebase
-        .database()
-        .ref('trashDrops/')
-        .on('value', function (snapshot) {
-          trashDropsObject = snapshot.val()
-          console.log('data retrieved')
-          for (let county in vermont.counties) {
-            vermont.counties[county].bagDrops = Array(0)
-          }
-          for (var key in trashDropsObject) {
-            let countyBoundaries = L.geoJSON(countyPolygons);
-            // put the coordinates of the trash drop object into a conveinient form
-            let keyCoordinates = [trashDropsObject[key].location.longitude, trashDropsObject[key].location.latitude]
-           // figure out which county the point is in, then cleans up that county name so it's usable in the next function
-            var resultsArray = leafletPip.pointInLayer(keyCoordinates, countyBoundaries, true)
-            var results = resultsArray[0].feature.properties.CNTYNAME.toLowerCase()
-            //looks through the list of counties in our vermont object, finds the one whose name matches the one the trash drop is in. Then pushes the trash drop into an array in that county object.
-            for(let county in vermont.counties){
-              if(results === vermont.counties[county].name){
-                vermont.counties[county].bagDrops.push(trashDropsObject[key])
-              }            
-            }
-          }
-          //to do: calculateTownBagCount
-          //to do: calculateCountyBagCount
-          console.log('populate finished.')
-          console.log(vermont)
-        })
-    }
-
-    buildCountyBagsArrays();
+    
 
  var mymap = L.map('mapid').setView([44.0423, -72.6034], 8);
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
