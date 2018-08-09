@@ -68,15 +68,20 @@ header{
 }
 
 .mapColumn{
+ 
+
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 5;
     background-color: darkcyan;
 }
-.theMap {
-    
+.theMapHeader {
     text-align: center;
+}
+form{
+    display: flex;
+    justify-content: space-around;
 }
 
 #teamCheck{

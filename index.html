@@ -18,7 +18,7 @@
     <div class='sideBar'>
 
         <div class="countyDropdown">
-            <button onclick="myFunction()"           class="dropbtn">Dropdown</button>
+            <button onclick="myFunction()" class="dropbtn">Zoom To County</button>
             <div id="myDropdown" class="dropdown-content">
                 <a href="#">Addison</a>
                 <a href="#">Bennington</a>
@@ -53,14 +53,39 @@
         </div>
 
     </div>
+
+
     <div class="mapColumn">
-        <div class="theMap"> map
-        </div>
+
+        <div class="theMapHeader"> MAP </div>
+
+        <form>
+            <div>
+                <input type="radio" id="teamRadio" name="map Radio" checked />
+                <label for="teamRadio">Filter By Team</label>
+            </div>
+            <div>
+                <input type="radio" id="participantRadio" name="map Radio" />
+                <label for="participantRadio">Filter By Participants</label>
+            </div>
+            <div>
+                <input type="radio" id="trashRadio" name="map Radio" />
+                <label for="trashRadio">Filter By Trash Drops</label>
+            </div>
+
+
+
+
+
+
+        </form>
+
+
     </div>
 
     <div class="statsColumn"> stats</div>
 
-<script src="dropdown.js"></script>
+    <script src="dropdown.js"></script>
 </body>
 
 </html>
