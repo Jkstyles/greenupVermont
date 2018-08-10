@@ -1,6 +1,6 @@
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
-    type: 'pie',
+    type: 'bar',
     data: {
         labels: ["Addison", "Bennington", "Caledonia", "Chittenden", "Essex", "Franklin", "Grand Isle", "Lamoille", "Orange", "Orleans", "Rutland", "Washington", "Windham", "Windsor"],
         datasets: [{
