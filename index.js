@@ -60,26 +60,26 @@
 
     // buildCountyBagsArrays();
 
- var mymap = L.map('mapid').setView([44.0423, -72.6034], 8);
-    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-	subdomains: 'abcd',
-	maxZoom: 19,
-    id: 'mapbox.streets',
-}).addTo(mymap);
+//  var mymap = L.map('mapid').setView([44.0423, -72.6034], 8);
+//     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+// 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+// 	subdomains: 'abcd',
+// 	maxZoom: 19,
+//     id: 'mapbox.streets',
+// }).addTo(mymap);
 
-//The beginnings of a function that makes the choropleth.
-let counties =countyPolygons.features
-for (county in counties) {
-  counties[county].properties.bagCount = bagCountOf(county)
-}
-let countyBoundaries = L.geoJSON(countyPolygons);
-countyBoundaries.addTo(mymap)
+// //The beginnings of a function that makes the choropleth.
+// let counties =countyPolygons.features
+// for (county in counties) {
+//   counties[county].properties.bagCount = bagCountOf(county)
+// }
+// let countyBoundaries = L.geoJSON(countyPolygons);
+// countyBoundaries.addTo(mymap)
 
-//ToDo: write a function in data structure to calculate total bag drops per county. Call it to get bag count for chloropleth.
-function bagCountOf(county) {
+// //ToDo: write a function in data structure to calculate total bag drops per county. Call it to get bag count for chloropleth.
+// function bagCountOf(county) {
   
-} 
+// } 
 
 // each of the counties in countyBoundaries already has a bounding box, addisons is at the variable below.
 // this would make zooming easy when we get around to that.
