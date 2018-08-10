@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
         crossorigin="" />
-        <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
         crossorigin=""></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.js'></script>
@@ -30,76 +30,70 @@
     <h1>Green Up Vermont Dashboard</h1>
 
     <div class='sideBar'>
-
-        <div class="countyDropdown">
-            <button onclick="myFunction()" class="dropbtn">Zoom To County</button>
-            <div id="myDropdown" class="dropdown-content">
-                <a href="#">Addison</a>
-                <a href="#">Bennington</a>
-                <a href="#">Caledonia</a>
-                <a href="#">Chittenden</a>
-                <a href="#">Essex</a>
-                <a href="#">Franklin</a>
-                <a href="#">Grand Isle</a>
-                <a href="#">Lamoille</a>
-                <a href="#">Orange</a>
-                <a href="#">Orleans</a>
-                <a href="#">Rutland</a>
-                <a href="#">Washington</a>
-                <a href="#">Windham</a>
-                <a href="#">Windsor</a>
-            </div>
-        </div>
-
-        <div class="checkBoxes">
-            <div id="teamCheck">
-                <input type="checkbox">
-                <label for="customCheck1">Total Number of Teams</label>
-            </div>
-            <div id="volunteerCheck">
-                <input type="checkbox">
-                <label for="customCheck2">Total Number of Volunteers</label>
-            </div>
-            <div id="trashCheck">
-                <input type="checkbox">
-                <label for="customCheck3">Total Number of Trash Drops</label>
-            </div>
-        </div>
+            
+            <div>
+                    <input type="checkbox" id="teamCheck" name="map Check" checked />
+                    <label for="teamCheck">Filter By Team</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="participantCheck" name="map Check" />
+                    <label for="participantCheck">Filter By Participants</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="trashCheck" name="map Check" />
+                    <label for="trashCheck">Filter By Trash Drops</label>
+                </div>
+    
+                <button onclick="myFunction()" class="dropbtn">Zoom To County</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#">Addison</a>
+                    <a href="#">Bennington</a>
+                    <a href="#">Caledonia</a>
+                    <a href="#">Chittenden</a>
+                    <a href="#">Essex</a>
+                    <a href="#">Franklin</a>
+                    <a href="#">Grand Isle</a>
+                    <a href="#">Lamoille</a>
+                    <a href="#">Orange</a>
+                    <a href="#">Orleans</a>
+                    <a href="#">Rutland</a>
+                    <a href="#">Washington</a>
+                    <a href="#">Windham</a>
+                    <a href="#">Windsor</a>
+                </div>
+        
 
     </div>
 
+
+    <form class="form">
+        <div>
+            <input type="radio" id="teamRadio" name="map Radio" checked />
+            <label for="teamRadio">Filter By Team</label>
+        </div>
+        <div>
+            <input type="radio" id="participantRadio" name="map Radio" />
+            <label for="participantRadio">Filter By Participants</label>
+        </div>
+        <div>
+            <input type="radio" id="trashRadio" name="map Radio" />
+            <label for="trashRadio">Filter By Trash Drops</label>
+        </div>
+
+    </form>
 
     <div class="mapColumn">
-
-        <div class="theMapHeader"></div>
-
-        <form>
-            <div>
-                <input type="radio" id="teamRadio" name="map Radio" checked />
-                <label for="teamRadio">Filter By Team</label>
-            </div>
-            <div>
-                <input type="radio" id="participantRadio" name="map Radio" />
-                <label for="participantRadio">Filter By Participants</label>
-            </div>
-            <div>
-                <input type="radio" id="trashRadio" name="map Radio" />
-                <label for="trashRadio">Filter By Trash Drops</label>
-            </div>
-
-        </form>
-        <div class="mappperthewrapper">
-            <div id="mapid">
-            </div>
-        </div>
-
+        <div id="mapid"></div>
     </div>
+
+    
 
     <div class="statsColumn">
-            <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="myChart" width="100px" height="100px"></canvas>
 
 
     </div>
+    <script src='countymap'></script>
     <script src='charts.js'></script>
     <script src="dropdown.js"></script>
     <script src="index.js"></script>
