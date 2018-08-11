@@ -29,14 +29,22 @@ function bagCountOf(county) {
 // mymap.fitBounds(countyBoundaries._layers['51']._bounds)
 
 function getColor(d) {
-    return d > 13 ? '#800026' :
-    d > 11 ? '#BD0026' :
-    d > 9 ? '#E31A1C' :
-    d > 7 ? '#FC4E2A' :
-    d > 5 ? '#FD8D3C' :
-    d > 3 ? '#FEB24C' :
-    d > 1 ? '#FED976' :
-    '#FFEDA0';
+    return d > 25 ? '#10410D' :
+    d > 23 ? '#1D4F1A' :
+    d > 21 ? '#295D27' :
+    d > 19 ? '#366B34' :
+    d > 17 ? '#427941' :
+    d > 15 ? '#F48748' :
+    d > 13 ? '#5C955B' :
+    d > 11 ? '#68A368' :
+    d > 9 ? '#75B175' :
+    d > 7 ? '#81BF82' :
+    d > 5 ? '#8ECD8F' :
+    d > 3 ? '#9ADB9C' :
+    d > 1 ? '#A7E9A9' :
+    d > 0 ? '#B4F8B6' :
+    d === 0 ?'#FFFFFF':
+    '#000000';
 }
 
 function style(feature) {
@@ -47,7 +55,7 @@ function style(feature) {
         opacity: 1,
         color: 'black',
         dashArray: '',
-        fillOpacity: 0.7
+        fillOpacity: 0.8
     };
 }
 
@@ -55,10 +63,10 @@ function highlightFeature(e) {
     var layer = e.target;
     
     layer.setStyle({
-        weight: 5,
-        color: '#666',
+        weight: 3,
+        color: 'black',
         dashArray: '',
-        fillOpacity: 0.7
+        fillOpacity: 1
     });
     
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
