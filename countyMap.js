@@ -29,7 +29,8 @@ function bagCountOf(county) {
 // mymap.fitBounds(countyBoundaries._layers['51']._bounds)
 
 function getColor(d) {
-    return d > 25 ? '#10410D' :
+    return d > 27 ? '#043300' :
+    d > 25 ? '#10410D' :
     d > 23 ? '#1D4F1A' :
     d > 21 ? '#295D27' :
     d > 19 ? '#366B34' :
@@ -43,7 +44,7 @@ function getColor(d) {
     d > 3 ? '#9ADB9C' :
     d > 1 ? '#A7E9A9' :
     d > 0 ? '#B4F8B6' :
-    d === 0 ?'#FFFFFF':
+    d === 0 ?'#DFFFDF':
     '#000000';
 }
 
