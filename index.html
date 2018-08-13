@@ -28,19 +28,21 @@
         <img src="./GreenupLogo.png" alt="Greenup Logo">
     </header>
     <h1>Green Up Vermont Dashboard</h1>
-    
+
     <div class="statsColumn">
-        <div>
-            <canvas id="teamChart" width="100px" height="100px"></canvas>
-        </div>
-        <div>
-            <canvas id="userChart" width="100px" height="100px"></canvas>
-        </div>
-        <div>
-            <canvas id="bagChart" width="100px" height="100px"></canvas>
-        </div>
+        <h3>Here is some lovely Data</h3>
     </div>
-    
+    <div class="teamPie">
+        <canvas id="teamChart"></canvas>
+    </div>
+    <div class="userPie">
+        <canvas id="userChart"></canvas>
+    </div>
+    <div class="bagPie">
+        <canvas id="bagChart"></canvas>
+    </div>
+
+
     <form class="mapFilter">
         <div>
             <input type="radio" id="teamRadio" name="map Radio" checked />
@@ -54,13 +56,13 @@
             <input type="radio" id="trashRadio" name="map Radio" />
             <label for="trashRadio">Filter By Trash Drops</label>
         </div>
-        
+
     </form>
-    
+
     <div class="mapColumn">
         <div id="mapid"></div>
     </div>
-    
+
 
     <script src='countyMap.js'></script>
     <script src='charts.js'></script>
