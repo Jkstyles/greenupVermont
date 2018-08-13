@@ -2,7 +2,6 @@
 
 <head>
     <style>
-
     </style>
 
 </head>
@@ -13,14 +12,18 @@
     <div id="div">
         <canvas id="myChart" height="100px"></canvas>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="dataObjects/vermontObject.js"></script>
-    
+
     <script>
         //nb: this must be above the chart 
-         let vermontCountiesArray = ['Addison','Bennington', 'Caledonia', 'Chittenden', 'Essex', 'Franklin', 'Grand Isle', 'Lamoille', 'Orange', 'Orleans', 'Rutland', 'Washington', 'Windham', 'Windsor']
+        let title = "Where bags were dropped";
+        let labels = ['Addison', 'Bennington', 'Caledonia', 'Chittenden', 'Essex', 'Franklin', 'Grand Isle', 'Lamoille', 'Orange', 'Orleans', 'Rutland', 'Washington', 'Windham', 'Windsor']
+        let data = [0, 1, 0, 0, 5, 0, 0, 4, 0, 0, 0, 7, 1, 0];
+        let colors = ['rgb(0%, 0%, 0%)', 'rgb(20%, 0%, 0%)', 'rgb(40%, 0%, 0%)', 'rgb(60%, 0%, 0%)', 'rgb(80%, 0%, 0%)', 'rgb(100%, 0%, 0%)', 'rgb(100%, 20%, 0%)', 'rgb(100%, 40%, 0%)', 'rgb(100%, 60%, 0%)', 'rgb(100%, 80%, 0%)', 'rgb(100%, 100%, 0%)', 'rgb(100%, 100%, 20%)', 'rgb(100%, 100%, 40%)', 'rgb(100%, 100%, 60%)']
 
+        removeZeros()
 
         var ctx = document.getElementById('myChart').getContext('2d');
         var chart = new Chart(ctx, {
@@ -29,21 +32,21 @@
 
             // The data for our dataset
             data: {
-                labels: vermontCountiesArray,
+                labels: labels,
                 datasets: [{
-                    label: "Where bags were dropped",
-                    backgroundColor: ['rgb(0%, 0%, 0%)','rgb(20%, 0%, 0%)','rgb(40%, 0%, 0%)','rgb(60%, 0%, 0%)','rgb(80%, 0%, 0%)','rgb(100%, 0%, 0%)','rgb(100%, 20%, 0%)','rgb(100%, 40%, 0%)','rgb(100%, 60%, 0%)','rgb(100%, 80%, 0%)','rgb(100%, 100%, 0%)','rgb(100%, 100%, 20%)','rgb(100%, 100%, 40%)','rgb(100%, 100%, 60%)'],
+                    label: title,
+                    backgroundColor: colors,
                     borderColor: 'rgb(0,0,0)',
-                    data: [1, 0, 0, 4, 5, 6, 7, 8, 9, 10, 0, 12, 0, 14],
-                   
-                    removeZeros: function() { for (var i = 0; i < chart.data.labels.length; i++) {
-                        if (chart.data.datasets[0].data[i] === 0 || undefined) {
-                            delete chart.data.datasets[0].data[i];
-                            delete chart.data.datasets[0].backgroundColor[i];
-                            delete chart.data.labels[i];
-                        }
-                    }
-                     }
+                    data: data,
+
+                    // removeZeros: function() { for (var i = 0; i < chart.data.labels.length; i++) {
+                    //     if (chart.data.datasets[0].data[i] === 0 || undefined) {
+                    //         delete chart.data.datasets[0].data[i];
+                    //         delete chart.data.datasets[0].backgroundColor[i];
+                    //         delete chart.data.labels[i];
+                    //     }
+                    // }
+                    //  }
                 }]
             },
 
@@ -55,8 +58,21 @@
         });
         // var ctx = document.getElementById("myChart");
         // ctx.size = 50;
-          chart.data.datasets[0].removeZeros();
-    </script> 
+
+        function removeZeros() {
+            let originalLength = labels.length;
+            let magicCounter = 0
+            for (var i = 0; i <= originalLength; i++) {
+                if (data[i - magicCounter] === 0 || data[i - magicCounter] === undefined) {
+                    labels.splice(i - magicCounter, 1);
+                    data.splice(i - magicCounter, 1);
+                    colors.splice(i - magicCounter, 1);
+                    magicCounter = magicCounter + 1
+                }
+                console.log(i - magicCounter)
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -108,4 +108,5 @@ mymap.touchZoom.disable();
 mymap.doubleClickZoom.disable();
 mymap.scrollWheelZoom.disable();
 
+
 info.addTo(mymap);
