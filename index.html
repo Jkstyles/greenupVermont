@@ -45,7 +45,7 @@
 
     <form class="mapFilter">
         <div>
-            <input type="radio" id="teamRadio" name="map Radio" checked />
+            <input type="radio" id="teamRadio" name="map Radio" onclick='putStatsInPolygonData("teams")' checked />
             <label for="teamRadio">Filter By Team</label>
         </div>
         <div>
@@ -53,7 +53,7 @@
             <label for="participantRadio">Filter By Participants</label>
         </div>
         <div>
-            <input type="radio" id="trashRadio" name="map Radio" />
+            <input type="radio" id="trashRadio" name="map Radio" onclick="putStatsInPolygonData('trash')" />
             <label for="trashRadio">Filter By Trash Drops</label>
         </div>
 
