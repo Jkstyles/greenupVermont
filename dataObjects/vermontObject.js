@@ -49,7 +49,6 @@ class Vermont {
             //to do: calculateTownBagCount
             console.log('populate finished.')
             this.getBagStats()
-            putBagNumbersInPolygonData()
             console.log(vermont)
         })
     }
@@ -134,6 +133,7 @@ class Vermont {
             }
             
             this.getTotalTeams()
+            putStatsInPolygonData()
         })
     }
 

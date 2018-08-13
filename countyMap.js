@@ -5,23 +5,38 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voya
     maxZoom: 19,
     id: 'mapbox.streets',
 }).addTo(mymap);
-let countyBoundaries
-function putBagNumbersInPolygonData() {
+
+
+let countyBoundaries = L.geoJson(countyPolygons, {
+        fillColor: '#1D4F1A',
+        weight: 2,
+        opacity: 1,
+        color: 'black',
+        dashArray: '',
+        fillOpacity: 0.6
+}).addTo(mymap)
+function putStatsInPolygonData(dataType) {
     //inserts that data into the polygon objects.
     let counties = countyPolygons.features
     for (let countyIndex in counties) {
-        counties[countyIndex].properties.bagCount = bagCountOf(counties[countyIndex].properties.CNTYNAME.toString().toLowerCase())
+        let targetCounty = counties[countyIndex].properties.CNTYNAME.toString().toLowerCase()
+        counties[countyIndex].properties.bagCount = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : teamCountOf(targetCounty); 
     }
+    mymap.removeLayer(countyBoundaries)
     countyBoundaries = L.geoJson(countyPolygons, {
         style: style,
         onEachFeature: onEachFeature
     }).addTo(mymap);
-}
-//toDo: make something like the above, but for teams.
+    
 
+}
 
 function bagCountOf(county) {
     return vermont.counties[county].stats.bagCount
+}
+
+function teamCountOf(county) {
+    return vermont.counties[county].stats.totalTeams
 }
 
 // each of the counties in countyBoundaries already has a bounding box, addisons is at the variable below.
@@ -85,6 +100,7 @@ function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
+        //add on click
     });
 }
 
