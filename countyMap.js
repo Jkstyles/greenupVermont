@@ -15,12 +15,15 @@ let countyBoundaries = L.geoJson(countyPolygons, {
         dashArray: '',
         fillOpacity: 0.6
 }).addTo(mymap)
+
 function putStatsInPolygonData(dataType) {
     //inserts that data into the polygon objects.
     let counties = countyPolygons.features
     for (let countyIndex in counties) {
+        console.log(dataType)
         let targetCounty = counties[countyIndex].properties.CNTYNAME.toString().toLowerCase()
-        counties[countyIndex].properties.bagCount = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : teamCountOf(targetCounty); 
+        counties[countyIndex].properties.choroplethData = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : teamCountOf(targetCounty); 
+        counties[countyIndex].properties.dataType = dataType || 'teams'
     }
     mymap.removeLayer(countyBoundaries)
     countyBoundaries = L.geoJson(countyPolygons, {
@@ -66,7 +69,7 @@ function getColor(d) {
 function style(feature) {
     console.log(feature)
     return {
-        fillColor: getColor(feature.properties.bagCount),
+        fillColor: getColor(feature.properties.choroplethData),
         weight: 2,
         opacity: 1,
         color: 'black',
@@ -114,8 +117,9 @@ info.onAdd = function (mymap) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>Total Bags by County</h4>' +  (props ?
-    '<b>' + props.CNTYNAME + '</b><br />' + props.bagCount + ' bags'
+    console.log(props)
+    this._div.innerHTML =   (props ? '<h4>'+ (props.dataType === 'trash' ? "Total Bag Drops by County": "Total Teams by County")+'</h4>' +
+    '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (props.dataType === 'trash' ? "bags":'teams')
     : 'Hover over a state');
 };
 
