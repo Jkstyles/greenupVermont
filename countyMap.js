@@ -99,11 +99,18 @@ function resetHighlight(e) {
     info.update()
 }
 
+function zoomToFeature(e) {
+    mymap.fitBounds(e.target.getBounds());
+    //This Function doesn't exist yet. Make it in a new townMap.js file.
+    //It should remove countyBoundaries and info from mymap and add the town versions.
+    //moveToTownChoropleth()
+}
+
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
-        //add on click
+        click: zoomToFeature
     });
 }
 
@@ -118,7 +125,7 @@ info.onAdd = function (mymap) {
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
     console.log(props)
-    this._div.innerHTML =   (props ? '<h4>'+ (props.dataType === 'trash' ? "Total Bag Drops by County": "Total Teams by County")+'</h4>' +
+    this._div.innerHTML =   (props ? '<h4>'+ (props.dataType === 'trash' ? "Total Bags Dropped by County": "Total Teams by County")+'</h4>' +
     '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (props.dataType === 'trash' ? "bags":'teams')
     : 'Hover over a state');
 };
