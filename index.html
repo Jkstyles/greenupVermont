@@ -13,6 +13,7 @@
     <script src="Simplified_County_Boundaries.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
     <script src="https://unpkg.com/@mapbox/leaflet-pip@latest/leaflet-pip.js"></script>
+    <script src='dataObjects/townClass.js'></script>
     <script src='dataObjects/countyClass.js'></script>
     <script src='dataObjects/vermontObject.js'></script>
     <script src='townPolygons.js'></script>
@@ -28,22 +29,24 @@
         <img src="./GreenupLogo.png" alt="Greenup Logo">
     </header>
     <h1>Green Up Vermont Dashboard</h1>
-    
+
     <div class="statsColumn">
-        <div>
-            <canvas id="teamChart" class="chart" width="100px" height="100px"></canvas>
-        </div>
-        <div>
-            <canvas id="userChart" class="chart" width="100px" height="100px"></canvas>
-        </div>
-        <div>
-            <canvas id="bagChart" class="chart" width="100px" height="100px"></canvas>
-        </div>
+        <h3>Here is some lovely Data</h3>
     </div>
-    
+    <div class="teamPie">
+        <canvas id="teamChart"></canvas>
+    </div>
+    <div class="userPie">
+        <canvas id="userChart"></canvas>
+    </div>
+    <div class="bagPie">
+        <canvas id="bagChart"></canvas>
+    </div>
+
+
     <form class="mapFilter">
         <div>
-            <input type="radio" id="teamRadio" name="map Radio" checked />
+            <input type="radio" id="teamRadio" name="map Radio" onclick='putStatsInPolygonData("teams")' checked />
             <label for="teamRadio">Filter By Team</label>
         </div>
         <div>
@@ -51,16 +54,16 @@
             <label for="participantRadio">Filter By Participants</label>
         </div>
         <div>
-            <input type="radio" id="trashRadio" name="map Radio" />
+            <input type="radio" id="trashRadio" name="map Radio" onclick="putStatsInPolygonData('trash')" />
             <label for="trashRadio">Filter By Trash Drops</label>
         </div>
-        
+
     </form>
-    
+
     <div class="mapColumn">
         <div id="mapid"></div>
     </div>
-    
+
 
     <script src='countyMap.js'></script>
     <script src='charts.js'></script>

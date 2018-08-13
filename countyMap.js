@@ -5,23 +5,41 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voya
     maxZoom: 19,
     id: 'mapbox.streets',
 }).addTo(mymap);
-let countyBoundaries
-function putBagNumbersInPolygonData() {
+
+
+let countyBoundaries = L.geoJson(countyPolygons, {
+        fillColor: '#1D4F1A',
+        weight: 2,
+        opacity: 1,
+        color: 'black',
+        dashArray: '',
+        fillOpacity: 0.6
+}).addTo(mymap)
+
+function putStatsInPolygonData(dataType) {
     //inserts that data into the polygon objects.
     let counties = countyPolygons.features
     for (let countyIndex in counties) {
-        counties[countyIndex].properties.bagCount = bagCountOf(counties[countyIndex].properties.CNTYNAME.toString().toLowerCase())
+        console.log(dataType)
+        let targetCounty = counties[countyIndex].properties.CNTYNAME.toString().toLowerCase()
+        counties[countyIndex].properties.choroplethData = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : teamCountOf(targetCounty); 
+        counties[countyIndex].properties.dataType = dataType || 'teams'
     }
+    mymap.removeLayer(countyBoundaries)
     countyBoundaries = L.geoJson(countyPolygons, {
         style: style,
         onEachFeature: onEachFeature
     }).addTo(mymap);
-}
-//toDo: make something like the above, but for teams.
+    
 
+}
 
 function bagCountOf(county) {
     return vermont.counties[county].stats.bagCount
+}
+
+function teamCountOf(county) {
+    return vermont.counties[county].stats.totalTeams
 }
 
 // each of the counties in countyBoundaries already has a bounding box, addisons is at the variable below.
@@ -51,7 +69,7 @@ function getColor(d) {
 function style(feature) {
     console.log(feature)
     return {
-        fillColor: getColor(feature.properties.bagCount),
+        fillColor: getColor(feature.properties.choroplethData),
         weight: 2,
         opacity: 1,
         color: 'black',
@@ -81,10 +99,18 @@ function resetHighlight(e) {
     info.update()
 }
 
+function zoomToFeature(e) {
+    mymap.fitBounds(e.target.getBounds());
+    //This Function doesn't exist yet. Make it in a new townMap.js file.
+    //It should remove countyBoundaries and info from mymap and add the town versions.
+    //moveToTownChoropleth()
+}
+
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
         mouseout: resetHighlight,
+        click: zoomToFeature
     });
 }
 
@@ -98,8 +124,9 @@ info.onAdd = function (mymap) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML = '<h4>Total Bags by County</h4>' +  (props ?
-    '<b>' + props.CNTYNAME + '</b><br />' + props.bagCount + ' bags'
+    console.log(props)
+    this._div.innerHTML =   (props ? '<h4>'+ (props.dataType === 'trash' ? "Total Bags Dropped by County": "Total Teams by County")+'</h4>' +
+    '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (props.dataType === 'trash' ? "bags":'teams')
     : 'Hover over a state');
 };
 

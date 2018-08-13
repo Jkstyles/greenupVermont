@@ -8,6 +8,7 @@ class Vermont {
         }
         this.getTotalProfiles()
         this.getCounties()
+        this.getTowns()
         this.buildCountyBagsArrays()
         this.getTeams()
     }
@@ -49,7 +50,6 @@ class Vermont {
             //to do: calculateTownBagCount
             console.log('populate finished.')
             this.getBagStats()
-            putBagNumbersInPolygonData()
             console.log(vermont)
         })
     }
@@ -134,9 +134,16 @@ class Vermont {
             }
             
             this.getTotalTeams()
+            putStatsInPolygonData()
         })
     }
-
+    getTowns() {
+        for (let town in townPolygons.features) {
+            let townName = townPolygons.features[town].properties.TOWNNAME.toLowerCase()
+            let CNTYNum = townPolygons.features[town].properties.CNTY
+            this.countyNumber(CNTYNum).towns[townName] = new Town(townName)
+        }
+    }
     //Gets the team count from each county and sums it to get the total teams in the state.
     getTotalTeams() {
         let teamCountArray = []
