@@ -32,21 +32,29 @@ h1 {
     flex-direction: row;
     justify-content: center;
     grid-column: 1/2;
-    grid-row: 2/7;
+    grid-row: 2/6;
     background-color: #ededed;
 }
 
+ 
 .teamPie {
+    position: relative;
     width: 100%;
     grid-column: 1/2;
     grid-row: 3/4;
 }
+
+ 
 .userPie {
+    position: relative;
     width: 100%;
     grid-column: 1/2;
     grid-row: 4/5;
 }
+
+ 
 .bagPie {
+    position: relative;
     width: 100%;
     grid-column: 1/2;
     grid-row: 5/6;
@@ -78,7 +86,7 @@ h1 {
     background-color: rgba(100%, 100%, 100%, .7);
     padding: 10px;
     position: relative;
-    right: 550px;
+    right: 480px;
     top: 30px;
     border: 1px solid black;
 }
