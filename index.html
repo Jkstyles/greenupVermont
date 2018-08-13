@@ -28,10 +28,53 @@
         <img src="./GreenupLogo.png" alt="Greenup Logo">
     </header>
     <h1>Green Up Vermont Dashboard</h1>
+    
+    <div class="statsColumn">
+        <div>
+            <canvas id="teamChart" width="100px" height="100px"></canvas>
+        </div>
+        <div>
+            <canvas id="userChart" width="100px" height="100px"></canvas>
+        </div>
+        <div>
+            <canvas id="bagChart" width="100px" height="100px"></canvas>
+        </div>
+    </div>
+    
+    <form class="mapFilter">
+        <div>
+            <input type="radio" id="teamRadio" name="map Radio" checked />
+            <label for="teamRadio">Filter By Team</label>
+        </div>
+        <div>
+            <input type="radio" id="participantRadio" name="map Radio" />
+            <label for="participantRadio">Filter By Participants</label>
+        </div>
+        <div>
+            <input type="radio" id="trashRadio" name="map Radio" />
+            <label for="trashRadio">Filter By Trash Drops</label>
+        </div>
+        
+    </form>
+    
+    <div class="mapColumn">
+        <div id="mapid"></div>
+    </div>
+    
 
-    <div class='sideBar'>
-            
-            <div>
+    <script src='countyMap.js'></script>
+    <script src='charts.js'></script>
+    <!-- <script src="dropdown.js"></script> -->
+    <script src="index.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+<!-- <div>
                     <input type="checkbox" id="teamCheck" name="map Check" checked />
                     <label for="teamCheck">Filter By Team</label>
                 </div>
@@ -42,9 +85,9 @@
                 <div>
                     <input type="checkbox" id="trashCheck" name="map Check" />
                     <label for="trashCheck">Filter By Trash Drops</label>
-                </div>
-    
-                <!-- <button onclick="myFunction()" class="dropbtn">Zoom To County</button>
+                </div> -->
+
+<!-- <button onclick="myFunction()" class="dropbtn">Zoom To County</button>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="#">Addison</a>
                     <a href="#">Bennington</a>
@@ -62,42 +105,3 @@
                     <a href="#">Windsor</a>
                 </div>
          -->
-
-    </div>
-
-
-    <form class="form">
-        <div>
-            <input type="radio" id="teamRadio" name="map Radio" checked />
-            <label for="teamRadio">Filter By Team</label>
-        </div>
-        <div>
-            <input type="radio" id="participantRadio" name="map Radio" />
-            <label for="participantRadio">Filter By Participants</label>
-        </div>
-        <div>
-            <input type="radio" id="trashRadio" name="map Radio" />
-            <label for="trashRadio">Filter By Trash Drops</label>
-        </div>
-
-    </form>
-
-    <div class="mapColumn">
-        <div id="mapid"></div>
-    </div>
-
-    
-
-    <div class="statsColumn">
-        <canvas id="myChart" width="100px" height="100px"></canvas>
-
-
-    </div>
-    <script src='countyMap.js'></script>
-    <script src='charts.js'></script>
-    <script src="dropdown.js"></script>
-    <script src="index.js"></script>
-
-</body>
-
-</html>
