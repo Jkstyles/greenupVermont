@@ -55,3 +55,11 @@ h1 {
 }
 
 
+.info {
+    background-color: rgba(100%, 100%, 100%, .7);
+    padding: 10px;
+    position: relative;
+    right: 550px;
+    top: 30px;
+    border: 1px solid black;
+}
