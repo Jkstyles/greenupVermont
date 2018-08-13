@@ -1,7 +1,7 @@
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 3fr 1fr 21fr;
+    grid-template-rows: 2fr 1fr 21fr;
     margin: 0;
     overflow: scroll;
     font-family: 'Playfair Display', serif;
