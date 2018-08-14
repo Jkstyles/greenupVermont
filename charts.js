@@ -172,7 +172,7 @@ let teamsArray;
 let labelsArray;
 
 
-let ctx = document.getElementById("myChart").getContext("2d");
+let ctx = document.getElementById("barChart").getContext("2d");
 
 let data = {
     labels: labelsArray,
