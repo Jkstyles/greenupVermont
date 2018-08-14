@@ -6,7 +6,7 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voya
     id: 'mapbox.streets',
 }).addTo(mymap);
 
-
+let townBoundaries
 let countyBoundaries = L.geoJson(countyPolygons, {
         fillColor: '#1D4F1A',
         weight: 2,
@@ -25,7 +25,8 @@ function putStatsInPolygonData(dataType) {
         counties[countyIndex].properties.choroplethData = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : teamCountOf(targetCounty); 
         counties[countyIndex].properties.dataType = dataType || 'teams'
     }
-    mymap.removeLayer(countyBoundaries)
+    mymap.removeLayer(countyBoundaries);
+
     countyBoundaries = L.geoJson(countyPolygons, {
         style: style,
         onEachFeature: onEachFeature
@@ -67,7 +68,6 @@ function getColor(d) {
 }
 
 function style(feature) {
-    console.log(feature)
     return {
         fillColor: getColor(feature.properties.choroplethData),
         weight: 2,
@@ -101,6 +101,7 @@ function resetHighlight(e) {
 
 function zoomToFeature(e) {
     mymap.fitBounds(e.target.getBounds());
+    createTownMap(e.target.feature.properties.CNTY)
     //This Function doesn't exist yet. Make it in a new townMap.js file.
     //It should remove countyBoundaries and info from mymap and add the town versions.
     //moveToTownChoropleth()
@@ -124,11 +125,23 @@ info.onAdd = function (mymap) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    console.log(props)
     this._div.innerHTML =   (props ? '<h4>'+ (props.dataType === 'trash' ? "Total Bags Dropped by County": "Total Teams by County")+'</h4>' +
     '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (props.dataType === 'trash' ? "bags":'teams')
     : 'Hover over a state');
 };
+
+function createTownMap(countyNumber){
+    if (townBoundaries) {mymap.removeLayer(townBoundaries)};
+    townBoundaries = L.geoJson(townPolygons, {
+        style: style,
+        onEachFeature: onEachFeature,
+        filter: (feature, layer) => {
+           return (feature.properties.CNTY === countyNumber ? true : false)
+        }
+    }).addTo(mymap);
+}
+
+
 
 mymap.dragging.disable();
 mymap.touchZoom.disable();
