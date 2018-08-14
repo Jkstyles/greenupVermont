@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <style>
+    </style>
+
+</head>
+
+<body>
+
+
+    <div id="div">
+        <canvas id="myChart" width="50px"></canvas>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="dataObjects/vermontObject.js"></script>
+
+    <script>
+        //nb: this must be above the chart 
+        let title = "Where bags were dropped";
+        let labels = ['Addison', 'Bennington', 'Caledonia', 'Chittenden', 'Essex', 'Franklin', 'Grand Isle', 'Lamoille', 'Orange', 'Orleans', 'Rutland', 'Washington', 'Windham', 'Windsor']
+        let data = [0, 1, 0, 0, 5, 0, 0, 4, 0, 0, 0, 7, 1, 0];
+        let colors = ['rgb(0%, 0%, 0%)', 'rgb(20%, 0%, 0%)', 'rgb(40%, 0%, 0%)', 'rgb(60%, 0%, 0%)', 'rgb(80%, 0%, 0%)', 'rgb(100%, 0%, 0%)', 'rgb(100%, 20%, 0%)', 'rgb(100%, 40%, 0%)', 'rgb(100%, 60%, 0%)', 'rgb(100%, 80%, 0%)', 'rgb(100%, 100%, 0%)', 'rgb(100%, 100%, 20%)', 'rgb(100%, 100%, 40%)', 'rgb(100%, 100%, 60%)']
+
+        removeZeros()
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
+
+            // The data for our dataset
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: title,
+                    backgroundColor: colors,
+                    borderColor: 'rgb(0,0,0)',
+                    data: data,
+
+                    // removeZeros: function() { for (var i = 0; i < chart.data.labels.length; i++) {
+                    //     if (chart.data.datasets[0].data[i] === 0 || undefined) {
+                    //         delete chart.data.datasets[0].data[i];
+                    //         delete chart.data.datasets[0].backgroundColor[i];
+                    //         delete chart.data.labels[i];
+                    //     }
+                    // }
+                    //  }
+                }]
+            },
+
+            // Configuration options go here
+            // options: {
+            //     height: 100
+
+            // }
+        });
+        // var ctx = document.getElementById("myChart");
+        // ctx.size = 50;
+
+        function removeZeros() {
+            let originalLength = labels.length;
+            let magicCounter = 0
+            for (var i = 0; i <= originalLength; i++) {
+                if (data[i - magicCounter] === 0 || data[i - magicCounter] === undefined) {
+                    labels.splice(i - magicCounter, 1);
+                    data.splice(i - magicCounter, 1);
+                    colors.splice(i - magicCounter, 1);
+                    magicCounter = magicCounter + 1
+                }            }
+        }
+    </script>
+</body>
+
+</html>
