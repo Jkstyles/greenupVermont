@@ -3,12 +3,12 @@
 
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-        crossorigin="" />
+    crossorigin="" />
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-        crossorigin=""></script>
+    crossorigin=""></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.js'></script>
     <script src="Simplified_County_Boundaries.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
@@ -29,43 +29,43 @@
         <img src="./GreenupLogo.png" alt="Greenup Logo">
         <div id="title">Green Up Vermont Dashboard</div>
     </header>
-
+    
     <div class="statsColumn">
         <div class="bagStats"></div>
         <div class="teamStats"></div>
         <div class="userStats"></div>
-
+        
     </div>
-
-        <form class="mapFilter">
-            <div>
-                <input type="radio" id="teamRadio" name="map Radio" onclick='createChoropleth(13)' checked />
-                <label for="teamRadio">Filter By Team</label>
-            </div>
-            <div>
-                <input type="radio" id="participantRadio" name="map Radio" />
-                <label for="participantRadio">Filter By Participants</label>
-            </div>
-            <div>
-                <input type="radio" id="trashRadio" name="map Radio" onclick="createChoropleth('trash')" />
-                <label for="trashRadio">Filter By Trash Drops</label>
-            </div>
-
+    
+    <form class="mapFilter">
+        <div>
+            <input type="radio" id="teamRadio" name="map Radio" onclick='createChoropleth(13)' checked />
+            <label for="teamRadio">Filter By Team</label>
+        </div>
+        <div>
+            <input type="radio" id="participantRadio" name="map Radio" />
+            <label for="participantRadio">Filter By Participants</label>
+        </div>
+        <div>
+            <input type="radio" id="trashRadio" name="map Radio" onclick="createChoropleth('trash')" />
+            <label for="trashRadio">Filter By Trash Drops</label>
+        </div>
+        
     </form>
-
+    
     <div class="mapColumn">
         <div id="mapid"></div>
     </div>
-
+    
     <div class="chart">
         <canvas id="barChart"></canvas>
     </div>
-
-        <script src='countyMap.js'></script>
-        <script src="index.js"></script>
-        <script src='charts.js'></script>
-
-
+    
+    <script src="index.js"></script>    
+    <script src='countyMap.js'></script>
+    <script src='charts.js'></script>
+    
+    
 </body>
 
 </html>

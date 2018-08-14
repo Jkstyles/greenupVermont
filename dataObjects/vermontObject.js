@@ -105,7 +105,6 @@ class Vermont {
             for (var team in teamCountObject) {
                 let teamTown = teamCountObject[team].town.toLowerCase().trim() 
                 if (teamTown) {
-                    console.log('do we get here?')
                     for(let county in this.counties){
                         
                         county = this.counties[county]

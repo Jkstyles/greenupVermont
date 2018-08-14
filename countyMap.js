@@ -27,10 +27,8 @@ function createChoropleth() {
 if (level === 'state') {
     let counties = countyPolygons.features
     for (let countyIndex in counties) {
-        console.log(dataType)
         let targetCounty = counties[countyIndex].properties.CNTYNAME.toString().toLowerCase()
         counties[countyIndex].properties.choroplethData = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : teamCountOf(targetCounty); 
-        counties[countyIndex].properties.dataType = dataType || 'teams'
     }
     mymap.removeLayer(countyBoundaries);
 
@@ -39,6 +37,19 @@ if (level === 'state') {
         onEachFeature: onEachFeature
     }).addTo(mymap);
 } else if (level === 'county') {
+    for(let county in vermont.counties){
+        county = vermont.counties[county]
+        for(let town in county.towns){
+            town = county.towns[town]
+            for(let townPolygon in townPolygons.features){
+                townPolygon = townPolygons.features[townPolygon]
+                if (townPolygon.properties.TOWNNAME.toLowerCase() == town.name){
+                    townPolygon.properties.choroplethData = (dataType === 'trash')  ? town.stats.bagCount : town.stats.totalTeams; 
+                    break
+                }
+            }
+        }
+    }
     createTownMap()
 }
 }
@@ -103,6 +114,7 @@ function highlightFeature(e) {
 }
 
 function resetHighlight(e) {
+    // townBoundaries.resetStyle(e.target)
     countyBoundaries.resetStyle(e.target);
     info.update()
 }
@@ -136,9 +148,19 @@ info.onAdd = function (mymap) {
 
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
-    this._div.innerHTML =   (props ? '<h4>'+ (props.dataType === 'trash' ? "Total Bags Dropped by County": "Total Teams by County")+'</h4>' +
-    '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (props.dataType === 'trash' ? "bags":'teams')
-    : 'Hover over a state');
+    let dataType = 
+    document.getElementById('trashRadio').checked ? 'trash' :
+    document.getElementById('teamRadio').checked ? 'teams' :
+    'users'
+    if (level == 'state'){
+    this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props ? 
+    '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
+    : 'Hover over a county');
+    } else if(level = 'county'){
+        this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props && props.TOWNNAME ? 
+            '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
+            : 'Hover over a town');
+    }
 };
 
 function createTownMap(){
@@ -149,6 +171,7 @@ function createTownMap(){
         onEachFeature: onEachFeature,
         filter: (feature, layer) => {
            return (feature.properties.CNTY === currentCounty ? true : false)
+           
         }
     }).addTo(mymap);
 }
