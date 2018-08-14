@@ -3,7 +3,7 @@
     let totalBagsDropped;
     let totalTeams;
     let totalProfiles;
-
+    let level = 'state'
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyAjwSCpOvLPgYcFr26V3gmfwJlGb-VtWAs",
