@@ -1,3 +1,4 @@
+let currentCounty
 var mymap = L.map('mapid', {zoomControl: false, }).setView([44.0423, -72.6034], 8);
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -16,8 +17,14 @@ let countyBoundaries = L.geoJson(countyPolygons, {
         fillOpacity: 0.6
 }).addTo(mymap)
 
-function putStatsInPolygonData(dataType) {
+function createChoropleth() {
     //inserts that data into the polygon objects.
+    let dataType = 
+    document.getElementById('trashRadio').checked ? 'trash' :
+    document.getElementById('teamRadio').checked ? 'teams' :
+    'users'
+
+if (level === 'state') {
     let counties = countyPolygons.features
     for (let countyIndex in counties) {
         console.log(dataType)
@@ -31,8 +38,9 @@ function putStatsInPolygonData(dataType) {
         style: style,
         onEachFeature: onEachFeature
     }).addTo(mymap);
-    
-
+} else if (level === 'county') {
+    createTownMap()
+}
 }
 
 function bagCountOf(county) {
@@ -101,7 +109,10 @@ function resetHighlight(e) {
 
 function zoomToFeature(e) {
     mymap.fitBounds(e.target.getBounds());
-    createTownMap(e.target.feature.properties.CNTY)
+    console.log(e.target)
+    currentCounty = e.target.feature.properties.CNTY
+    level = (e.target.feature.properties.TOWNNAME ? 'town' : 'county')
+    createChoropleth()
     //This Function doesn't exist yet. Make it in a new townMap.js file.
     //It should remove countyBoundaries and info from mymap and add the town versions.
     //moveToTownChoropleth()
@@ -130,13 +141,14 @@ info.update = function (props) {
     : 'Hover over a state');
 };
 
-function createTownMap(countyNumber){
+function createTownMap(){
+    console.log('create town called')
     if (townBoundaries) {mymap.removeLayer(townBoundaries)};
     townBoundaries = L.geoJson(townPolygons, {
         style: style,
         onEachFeature: onEachFeature,
         filter: (feature, layer) => {
-           return (feature.properties.CNTY === countyNumber ? true : false)
+           return (feature.properties.CNTY === currentCounty ? true : false)
         }
     }).addTo(mymap);
 }
