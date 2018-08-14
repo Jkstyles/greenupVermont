@@ -1,7 +1,7 @@
 .container {
     display: grid;
     height: 0vmax;
-    grid-template-columns: minmax(200px, 1fr) 2fr;
+    grid-template-columns: minmax(200px, 1fr) minmax(300px, 2fr);
     grid-template-rows: repeat(4 2fr) 3fr;
     margin: 0;
     overflow: visible;
