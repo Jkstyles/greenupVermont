@@ -27,49 +27,43 @@
 <body class="container">
     <header>
         <img src="./GreenupLogo.png" alt="Greenup Logo">
+        <div id="title">Green Up Vermont Dashboard</div>
     </header>
-    <div id="title">Green Up Vermont Dashboard</div>
 
     <div class="statsColumn">
-        <div id="analize">Analize Greenup Data</div>
+        <div class="bagStats"></div>
+        <div class="teamStats"></div>
+        <div class="userStats"></div>
 
-        <div class="pieCharts">
-            <div class="teamPie">
-                <canvas id="teamChart"></canvas>
-            </div>
-            <div class="userPie">
-                <canvas id="userChart"></canvas>
-            </div>
-            <div class="bagPie">
-                <canvas id="bagChart"></canvas>
-            </div>
-        </div>
     </div>
 
-        <form class="mapFilter">
-            <div>
-                <input type="radio" id="teamRadio" name="map Radio" onclick='putStatsInPolygonData("teams")' checked />
-                <label for="teamRadio">Filter By Team</label>
-            </div>
-            <div>
-                <input type="radio" id="participantRadio" name="map Radio" />
-                <label for="participantRadio">Filter By Participants</label>
-            </div>
-            <div>
-                <input type="radio" id="trashRadio" name="map Radio" onclick="putStatsInPolygonData('trash')" />
-                <label for="trashRadio">Filter By Trash Drops</label>
-            </div>
-
-        </form>
-
-        <div class="mapColumn">
-            <div id="mapid"></div>
+    <form class="mapFilter">
+        <div>
+            <input type="radio" id="teamRadio" name="map Radio" onclick='putStatsInPolygonData("teams")' checked />
+            <label for="teamRadio">Filter By Team</label>
+        </div>
+        <div>
+            <input type="radio" id="participantRadio" name="map Radio" />
+            <label for="participantRadio">Filter By Participants</label>
+        </div>
+        <div>
+            <input type="radio" id="trashRadio" name="map Radio" onclick="putStatsInPolygonData('trash')" />
+            <label for="trashRadio">Filter By Trash Drops</label>
         </div>
 
+    </form>
 
-        <script src='countyMap.js'></script>
-        <script src='charts.js'></script>
-         <script src="index.js"></script>
+    <div class="mapColumn">
+        <div id="mapid"></div>
+    </div>
+
+    <div class="chart">
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <script src='countyMap.js'></script>
+    <script src='charts.js'></script>
+    <script src="index.js"></script>
 
 </body>
 
