@@ -43,13 +43,14 @@ var myChart = new Chart(ctx, {
         }]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
+        height: 500,
+        // scales: {
+        //     yAxes: [{
+        //         ticks: {
+        //             beginAtZero:true
+        //         }
+        //     }]
+        // }
     }
 });
 
