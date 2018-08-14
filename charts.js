@@ -1,6 +1,5 @@
 var ctx = document.getElementById("teamChart");
 var myChart = new Chart(ctx, {
-    responsive: true,
     type: 'pie',
     data: {
         labels: ["Addison", "Bennington", "Caledonia", "Chittenden", "Essex", "Franklin", "Grand Isle", "Lamoille", "Orange", "Orleans", "Rutland", "Washington", "Windham", "Windsor"],
@@ -56,7 +55,6 @@ var myChart = new Chart(ctx, {
 
 var ctx = document.getElementById("userChart");
 var myChart = new Chart(ctx, {
-    responsive: true,
     type: 'pie',
     data: {
         labels: ["Addison", "Bennington", "Caledonia", "Chittenden", "Essex", "Franklin", "Grand Isle", "Lamoille", "Orange", "Orleans", "Rutland", "Washington", "Windham", "Windsor"],
@@ -112,7 +110,6 @@ var myChart = new Chart(ctx, {
 
 var ctx = document.getElementById("bagChart");
 var myChart = new Chart(ctx, {
-    responsive: true,
     type: 'pie',
     data: {
         labels: ["Addison", "Bennington", "Caledonia", "Chittenden", "Essex", "Franklin", "Grand Isle", "Lamoille", "Orange", "Orleans", "Rutland", "Washington", "Windham", "Windsor"],

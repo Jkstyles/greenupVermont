@@ -28,83 +28,49 @@
     <header>
         <img src="./GreenupLogo.png" alt="Greenup Logo">
     </header>
-    <h1>Green Up Vermont Dashboard</h1>
+    <div id="title">Green Up Vermont Dashboard</div>
 
     <div class="statsColumn">
-        <h3>Here is some lovely Data</h3>
-    </div>
-    <div class="teamPie">
-        <canvas id="teamChart"></canvas>
-    </div>
-    <div class="userPie">
-        <canvas id="userChart"></canvas>
-    </div>
-    <div class="bagPie">
-        <canvas id="bagChart"></canvas>
-    </div>
+        <div id="analize">Analize Greenup Data</div>
 
-
-    <form class="mapFilter">
-        <div>
-            <input type="radio" id="teamRadio" name="map Radio" onclick='putStatsInPolygonData("teams")' checked />
-            <label for="teamRadio">Filter By Team</label>
+        <div class="pieCharts">
+            <div class="teamPie">
+                <canvas id="teamChart"></canvas>
+            </div>
+            <div class="userPie">
+                <canvas id="userChart"></canvas>
+            </div>
+            <div class="bagPie">
+                <canvas id="bagChart"></canvas>
+            </div>
         </div>
-        <div>
-            <input type="radio" id="participantRadio" name="map Radio" />
-            <label for="participantRadio">Filter By Participants</label>
-        </div>
-        <div>
-            <input type="radio" id="trashRadio" name="map Radio" onclick="putStatsInPolygonData('trash')" />
-            <label for="trashRadio">Filter By Trash Drops</label>
-        </div>
-
-    </form>
-
-    <div class="mapColumn">
-        <div id="mapid"></div>
     </div>
 
+        <form class="mapFilter">
+            <div>
+                <input type="radio" id="teamRadio" name="map Radio" onclick='putStatsInPolygonData("teams")' checked />
+                <label for="teamRadio">Filter By Team</label>
+            </div>
+            <div>
+                <input type="radio" id="participantRadio" name="map Radio" />
+                <label for="participantRadio">Filter By Participants</label>
+            </div>
+            <div>
+                <input type="radio" id="trashRadio" name="map Radio" onclick="putStatsInPolygonData('trash')" />
+                <label for="trashRadio">Filter By Trash Drops</label>
+            </div>
 
-    <script src='countyMap.js'></script>
-    <script src='charts.js'></script>
-    <!-- <script src="dropdown.js"></script> -->
-    <script src="index.js"></script>
+        </form>
+
+        <div class="mapColumn">
+            <div id="mapid"></div>
+        </div>
+
+
+        <script src='countyMap.js'></script>
+        <script src='charts.js'></script>
+         <script src="index.js"></script>
 
 </body>
 
 </html>
-
-
-
-
-<!-- <div>
-                    <input type="checkbox" id="teamCheck" name="map Check" checked />
-                    <label for="teamCheck">Filter By Team</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="participantCheck" name="map Check" />
-                    <label for="participantCheck">Filter By Participants</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="trashCheck" name="map Check" />
-                    <label for="trashCheck">Filter By Trash Drops</label>
-                </div> -->
-
-<!-- <button onclick="myFunction()" class="dropbtn">Zoom To County</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a href="#">Addison</a>
-                    <a href="#">Bennington</a>
-                    <a href="#">Caledonia</a>
-                    <a href="#">Chittenden</a>
-                    <a href="#">Essex</a>
-                    <a href="#">Franklin</a>
-                    <a href="#">Grand Isle</a>
-                    <a href="#">Lamoille</a>
-                    <a href="#">Orange</a>
-                    <a href="#">Orleans</a>
-                    <a href="#">Rutland</a>
-                    <a href="#">Washington</a>
-                    <a href="#">Windham</a>
-                    <a href="#">Windsor</a>
-                </div>
-         -->
