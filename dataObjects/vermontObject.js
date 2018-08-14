@@ -134,7 +134,7 @@ class Vermont {
             }
             
             this.getTotalTeams()
-            putStatsInPolygonData()
+            createChoropleth('teams')
         })
     }
     getTowns() {
