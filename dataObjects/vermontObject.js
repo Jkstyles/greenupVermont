@@ -6,7 +6,7 @@ class Vermont {
         this.stats = {
             
         }
-        this.getTotalProfiles()
+        // this.getTotalProfiles()
         this.getCounties()
         this.getTowns()
         this.buildCountyBagsArrays()
@@ -28,23 +28,27 @@ class Vermont {
             let trashDropsObject = snapshot.val()
             console.log('data retrieved')
             // create the arrays to store bagDrops in each county
-            for (let county in this.counties) {
-                this.counties[county].bagDrops = Array(0)
-            }
+            // for (let county in this.counties) {
+            //     this.counties[county].bagDrops = Array(0)
+            // }
             //for each trashdrop
             for (var key in trashDropsObject) {
-                let countyBoundaries = L.geoJSON(countyPolygons);
+                let townBoundaries = L.geoJSON(townPolygons);
                 // put the coordinates of the trash drop object into a conveinient form
                 let keyCoordinates = [trashDropsObject[key].location.longitude, trashDropsObject[key].location.latitude]
                 // figure out which county the drop is in, then cleans up that county name so it's usable in the next function
-                var resultsArray = leafletPip.pointInLayer(keyCoordinates, countyBoundaries, true)
-                var results = resultsArray[0].feature.properties.CNTYNAME.toLowerCase()
+                var resultsArray = leafletPip.pointInLayer(keyCoordinates, townBoundaries, true)
+                var results = resultsArray[0].feature.properties.TOWNNAME.toLowerCase()
                 //looks through the list of counties in our vermont object, finds the one whose name matches the one the trash drop is in.
                 for(let county in this.counties){
-                    if(results === this.counties[county].name){
+                    county = this.counties[county]
+                    for(let town in county.towns) {
+                    if(results === county.towns[town].name){
                         //Then push the trash drop into the array in that county object we set up earlier.
-                        this.counties[county].bagDrops.push(trashDropsObject[key])
-                    }            
+                        county.towns[town].bagDrops.push(trashDropsObject[key]) 
+                        break;                       
+                    }          
+                }  
                 }
             }
             //to do: calculateTownBagCount
@@ -76,21 +80,8 @@ class Vermont {
         let stateBagCountArray = []
         //For each county
         for (let county in this.counties) {
-            //set up a working array
-            let bagCountArray = []
-            //Take each drop in the array, and push its number of bags to the county's array
-            for(let bagDrop in this.counties[county].bagDrops){
-                let bagNumber = this.counties[county].bagDrops[bagDrop].bagCount
-                bagCountArray.push(bagNumber)
-            }
-            // add up the bag numbers in the county array for a total number of bags in the county
-            totalBagsDropped = bagCountArray.reduce(function (total, currentValue) {
-                return total + currentValue;
-            }, 0);
-            // 'Save' the total number of bags at the county level to a property of the County Object.
-            this.counties[county].stats.bagCount = totalBagsDropped
-            // take that total number of county bags and push it to the state level array.
-            stateBagCountArray.push(totalBagsDropped)
+           this.counties[county].getBagStats()
+            stateBagCountArray.push(this.counties[county].stats.bagCount)
         }
         // sum up bag counts again. this time at the state level to get a total number of bags in the state.
         let stateBagCount = stateBagCountArray.reduce(function (total, currentValue) {
@@ -110,31 +101,36 @@ class Vermont {
                 this.counties[county].teams = Array(0)
             }
             let teamCountObject = snapshot.val()
+            
             for (var team in teamCountObject) {
-                let teamTown = teamCountObject[team].town.toUpperCase().trim()
-                let teamCNTY; 
+                let teamTown = teamCountObject[team].town.toLowerCase().trim() 
                 if (teamTown) {
-                    for (let town in townPolygons.features) {
-                        let townName = townPolygons.features[town].properties.TOWNNAME
-                        if (townName === teamTown){
-                            teamCNTY = townPolygons.features[town].properties.CNTY
-                            break
-                        }
+                    console.log('do we get here?')
+                    for(let county in this.counties){
+                        
+                        county = this.counties[county]
+                        for(let town in county.towns) {
+                            
+                        if(teamTown === county.towns[town].name){
+                            
+                            //Then push the trash drop into the array in that county object we set up earlier.
+                            county.towns[town].teams.push(teamCountObject[team]) 
+                            break;                       
+                        }          
+                    }  
                     }
-                    let countyObject = this.countyNumber(teamCNTY)
-                    if (countyObject){
-                        countyObject.teams.push(teamCountObject[team])
-                    } else {
+                    } 
+                    else {
                         this.townlessTeamsArray.push(teamCountObject[team])
                     }
-                }
+                // }
             }
             for (let county in this.counties) {
-                this.counties[county].stats.totalTeams = this.counties[county].teams.length
+                this.counties[county].getTeamStats()
             }
             
             this.getTotalTeams()
-            createChoropleth('teams')
+            createChoropleth()
         })
     }
     getTowns() {
