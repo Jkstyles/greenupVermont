@@ -143,8 +143,12 @@ function highlightFeature(e) {
 
 function resetHighlight(e) {
     // townBoundaries.resetStyle(e.target)
+    if(level == 'state'){
     countyBoundaries.resetStyle(e.target);
     info.update()
+    } else if (level == 'county'){
+        info.update()
+    }
 }
 
 function zoomToFeature(e) {
