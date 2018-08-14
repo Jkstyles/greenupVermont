@@ -50,17 +50,20 @@ img {
     background-color: bisque;
 }
 
-.bagStats {
-   height: 100%;
+#odometer1 {
+    font-size: 100px;
+    height: 100%;
     background-color: #c92626;
     grid-area: 2/1/3/2;
 }
-.teamStats {
+#odometer2 {
+    font-size: 100px;
     height: 100%;
     background-color: #26c934;
     grid-area: 3/1/4/2;
 }
-.userStats {
+#odometer3 {
+    font-size: 100px;
     height: 100%;
     background-color: #26b6c9;
     grid-area: 4/1/5/2;
