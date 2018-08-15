@@ -55,7 +55,7 @@ img {
     background-color: #70A3AB;
 }
 
-#odometer1 {
+#bagsOdometer {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -75,7 +75,7 @@ img {
     font-size: 20px;
 }
 
-#odometer2 {
+#teamsOdometer {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -95,7 +95,7 @@ img {
     font-size: 20px;
 }
 
-#odometer3 {
+#usersOdometer {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -159,4 +159,13 @@ img {
 }
 #zoomBtn{
     display: none;
+}
+#bagCounterLabel {
+    z-index: 1;
+}
+#teamCounterLabel {
+    z-index: 1;
+}
+#userCounterLabel {
+    z-index: 1;
 }

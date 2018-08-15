@@ -30,6 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Green Up Vermont Dashboard</title>
+
 </head>
 
 <body class="container">
@@ -40,16 +41,16 @@
 
     <div class="statsColumn">
         <div class="bagCounter">
-            <div>Bags dropped in </div>
-            <div id="odometer1" class="odometer">00</div>
+            <div id="bagCounterLabel">Bags dropped in </div>
+            <div id="bagsOdometer" class="odometer">00</div>
         </div>
         <div class="teamCounter">
-            <div>Total Teams in </div>
-            <div id="odometer2" class="odometer">00</div>
+            <div id="teamCounterLabel">Total Teams in </div>
+            <div id="teamsOdometer" class="odometer">00</div>
         </div>
         <div class="userCounter">
-            <div>Total Participants in </div>
-            <div id="odometer3" class="odometer">00</div>
+            <div id="userCounterLabel">Total Participants in </div>
+            <div id="usersOdometer" class="odometer">00</div>
         </div>
     </div>
 
@@ -81,16 +82,9 @@
         <canvas id="barChart"></canvas>
     </div>
 
+    <script src='odometers.js'></script>
     <script>
-        setTimeout(function () {
-            odometer1.innerHTML = 88;
-        }, 0);
-        setTimeout(function () {
-            odometer2.innerHTML = 88;
-        }, 0);
-        setTimeout(function () {
-            odometer3.innerHTML = 88;
-        }, 0);
+    updateOdometer();
     </script>
 
     <script src="index.js"></script>
@@ -101,3 +95,10 @@
 </body>
 
 </html>
+<!-- 
+<div id="bagsOdometer" class="odometer">00</div>
+        <div id="bagCounterLabel">Total Bags dropped in </div>
+        <div id="teamsOdometer" class="odometer">00</div>
+        <div id="teamCounterLabel">Total Teams in </div>
+        <div id="usersOdometer" class="odometer">00</div>
+        <div id="userCounterLabel">Total Participants in </div> -->
