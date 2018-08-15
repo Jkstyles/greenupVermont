@@ -44,6 +44,7 @@ class Vermont {
             this.sortTeamsAndMembersToTowns(teamsObject, teamMembersObject)
             this.getTotalTeams()
             createChoropleth()
+            updateOdometer()
         })
     }
 

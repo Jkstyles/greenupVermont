@@ -13,7 +13,7 @@ function updateOdometer() {
             usersOdometer.innerHTML = vermont.stats.totalUsers;
         }, 500);
    
-    } else if (level === county) {
+    } else if (level === 'county') {
    
         setTimeout(function () {
             bagsOdometer.innerHTML = vermont.countyNumber(currentCounty).stats.bagCount
@@ -25,7 +25,7 @@ function updateOdometer() {
             usersOdometer.innerHTML = vermont.countyNumber(currentCounty).stats.userActivity
         }, 500);
    
-    } else if (level === town) {
+    } else if (level === 'town') {
        
         setTimeout(function () {
             bagsOdometer.innerHTML = 'placeHolder'
