@@ -1,6 +1,7 @@
-// window.odometerOptions = {
-//     auto: false,
-// }
+window.odometerOptions = {
+    auto: false,
+    animation: "count",
+}
 
 setTimeout(function(){
     odometer1.innerHTML = 2222;
