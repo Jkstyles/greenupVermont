@@ -172,6 +172,50 @@ let teamsArray;
 let labelsArray;
 
 
+// let ctx = document.getElementById("barChart").getContext("2d");
+
+// let data = {
+//     labels: labelsArray,
+//     datasets: [
+//         {
+//             label: "Bags",
+//             backgroundColor: "rgb(24, 27, 28)",
+//             data: bagsArray
+//         },
+//         {
+//             label: "Profiles",
+//             backgroundColor: "rgb(73, 135, 62)",
+//             data: profilesArray
+//         },
+//         {
+//             label: "Teams",
+//             backgroundColor: "rgb(176, 192, 220)",
+//             data: teamsArray
+//         }
+//     ]
+// };
+// var myBarChart = new Chart(ctx, {
+//     type: 'bar',
+//     data: data,
+//     options: {
+//         barValueSpacing: 20,
+//         scales: {
+//             yAxes: [{
+//                 ticks: {
+//                     min: 0,
+//                 }
+//             }]
+//         }
+//     }
+// });
+
+
+
+//NOTE! This function is called in the vermont object and will eventually be called on every map click.
+
+function makeChart() {
+
+
 let ctx = document.getElementById("barChart").getContext("2d");
 
 let data = {
@@ -210,10 +254,6 @@ var myBarChart = new Chart(ctx, {
 });
 
 
-
-//NOTE! This function is called in the vermont object and will eventually be called on every map click.
-
-function makeChart() {
     counties = vermont.counties
     bagsArray = data.datasets[0].data;
     profilesArray = data.datasets[1].data;
