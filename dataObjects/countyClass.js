@@ -35,19 +35,25 @@ class County {
         // 'Save' the total number of bags at the county level to a property of the county Object.
         this.stats.bagCount = countyBagCount
     }
-    getTeamStats() {
-        //set up an array to work with later
+    getTeamAndUserStats() {
+        //set up arrays to work with later
         let teamCountArray = []
+        let userCountArray = []
         //for each town
         for (let town in this.towns) {
             //set the totalTeams subproperty of stats to the number of towns
             this.towns[town].stats.totalTeams = this.towns[town].teams.length
-            //and push that number of towns to our working array
+            //set userActivity to the total number of team members in the town.
+            this.towns[town].stats.userActivity = _.sum(this.towns[town].users)
+            //and push those numbers to our working arrays
             teamCountArray.push(this.towns[town].stats.totalTeams)
+            userCountArray.push(this.towns[town].stats.userActivity)
         }
-        //add up the tnumber of teams in each town
+        //add up the tnumber of teams and users in each town
         let totalCountyTeams = _.sum(teamCountArray)
-        //and 'save' that number as a property of the county
+        let totalCountyUsers = _.sum(userCountArray)
+        //and 'save' those numbers as a property of the county
         this.stats.totalTeams = totalCountyTeams
+        this.stats.userActivity = totalCountyUsers
     }
 }

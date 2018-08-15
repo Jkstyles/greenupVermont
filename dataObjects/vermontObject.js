@@ -10,7 +10,7 @@ class Vermont {
         this.getCounties()
         this.getTowns()
         this.buildCountyBagsArrays()
-        this.getTeams()
+        this.getFirebaseData()
     }
     getCounties() {
         //Puts a county object for each Vermont county into the vermontObject
@@ -76,17 +76,28 @@ class Vermont {
         })
     }
     
-    getTeams() {
+    getFirebaseData() {
         var profiles = firebase
         .database()
-        .ref('teams/')
+        .ref('/')
         .on('value', (snapshot) => {
-            this.townlessTeamsArray = []
-            let teamCountObject = snapshot.val()
+
+            let teamsObject = snapshot.val().teams
+            let teamMembersObject = snapshot.val().teamMembers
+            
+            this.sortTeamsAndMembersToTowns(teamsObject, teamMembersObject)
+
+            this.getTotalTeams()
+            createChoropleth()
+        })
+    }
+    
+    sortTeamsAndMembersToTowns(teamsObject, teamMembersObject){
+        this.townlessTeamsArray = []
             //for each team in the database
-            for (var team in teamCountObject) {
+            for (var team in teamsObject) {
                 //get the town that team is in,
-                let teamTown = teamCountObject[team].town.toLowerCase().trim() 
+                let teamTown = teamsObject[team].town.toLowerCase().trim() 
                 //(if there is one)
                 if (teamTown) {
                     //then search through the counties
@@ -95,7 +106,9 @@ class Vermont {
                         //for a town object with the same name as the town the team is in.
                         if (county.towns[teamTown]){
                             //Then push the team into the existing team array in that town object.
-                            county.towns[teamTown].teams.push(teamCountObject[team])
+                            county.towns[teamTown].teams.push(teamsObject[team])
+                            //Save a count of the number of users in each team.
+                            county.towns[teamTown].users.push(Object.keys(teamMembersObject[team]).length)
                             //and escape the loop
                             break;
                         }
@@ -107,7 +120,7 @@ class Vermont {
                     //         if(teamTown === county.towns[town].name){
                                 
                     //             
-                    //             county.towns[town].teams.push(teamCountObject[team])
+                    //             county.towns[town].teams.push(teamsObject[team])
                     //             //set your flag to escape the loop,
                     //             done = true
                     //             break;                       
@@ -121,19 +134,13 @@ class Vermont {
                 } 
                 //If the team doesn't have a town
                 else {
-                    this.townlessTeamsArray.push(teamCountObject[team])
+                    this.townlessTeamsArray.push(teamsObject[team])
                 }
             }
             for (let county in this.counties) {
-                this.counties[county].getTeamStats()
+                this.counties[county].getTeamAndUserStats()
             }
-            
-            this.getTotalTeams()
-            createChoropleth()
-        })
     }
-    
-    
     getTotalProfiles() {
         var teams = firebase
         .database()
