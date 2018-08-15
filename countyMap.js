@@ -142,15 +142,15 @@ function highlightFeature(e) {
     info.update(layer.feature.properties)
 }
 
-// function resetHighlight(e) {                             MAYBE WE CAN REMOVE THIS AND MOUSEOUT????
-//     // townBoundaries.resetStyle(e.target)
-//     if(level == 'state'){
-//     // countyBoundaries.resetStyle(e.target);
-//     info.update()
-//     } else if (level == 'county'){
-//         info.update()
-//     }
-// }
+function resetHighlight(e) {                             //MAYBE WE CAN REMOVE THIS AND MOUSEOUT????
+    if(!e.target.feature.properties.TOWNNAME){
+    countyBoundaries.resetStyle(e.target);
+    info.update()
+    } else if (e.target.feature.properties.TOWNNAME){
+    townBoundaries.resetStyle(e.target)
+    info.update()
+    }
+}
 function showBtnAtZoomOut(level){
     
     if (level === "state") {
@@ -186,7 +186,7 @@ function zoomToFeature(e) {
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
-        // mouseout: resetHighlight,           MAYBE WE CAN REMOVE THIS AND RESET HIGHLIGHT????
+        mouseout: resetHighlight,           //MAYBE WE CAN REMOVE THIS AND RESET HIGHLIGHT????
         click: zoomToFeature
     });
 }

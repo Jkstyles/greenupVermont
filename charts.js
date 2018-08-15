@@ -194,38 +194,57 @@ let data = {
         }
     ]
 };
-    var myBarChart = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: {
-            barValueSpacing: 20,
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        min: 0,
-                    }
-                }]
-            }
+var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+        barValueSpacing: 20,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                }
+            }]
         }
-    });
+    }
+});
 
 
 
-//NOTE! 'The profiles' here is a cheat! Will need to be changed. This function is called in the vermont object and will eventually be called on every click.
+//NOTE! This function is called in the vermont object and will eventually be called on every map click.
 
-function makeCountiesChart(){
+function makeChart() {
     counties = vermont.counties
     bagsArray = data.datasets[0].data;
     profilesArray = data.datasets[1].data;
     teamsArray = data.datasets[2].data;
     labelsArray = data.labels;
-    
-    for (let county in vermont.counties) {
-        bagsArray.push(vermont.counties[county].stats.bagCount);
-        profilesArray.push(vermont.counties[county].stats.userActivity);
-        teamsArray.push(vermont.counties[county].stats.totalTeams);
-        labelsArray.push(vermont.counties[county].name);
-        console.log("number of teams: " + vermont.counties[county].stats.totalTeams);
+
+    if (level === 'state') {
+
+        for (let county in vermont.counties) {
+            bagsArray.push(vermont.counties[county].stats.bagCount);
+            profilesArray.push(vermont.counties[county].stats.userActivity);
+            teamsArray.push(vermont.counties[county].stats.totalTeams);
+            labelsArray.push(vermont.counties[county].name);
+            console.log("number of teams: " + vermont.counties[county].stats.totalTeams);
+        }
     }
 
+
+    else if (level === 'county') {
+        bagsArray = [];
+        profilesArray = [];
+        teamsArray = [];
+        labelsArray = [];
+        let countyForGraph = vermont.countyNumber(currentCounty)
+        for (let town in countyForGraph.towns) {
+            bagsArray.push(countyForGraph.towns[town].stats.bagCount);
+            profilesArray.push(countyForGraph.towns[town].stats.userActivity);
+            teamsArray.push(countyForGraph.towns[town].stats.totalTeams);
+            labelsArray.push(countyForGraph.towns[town].name);
+            console.log(countyForGraph.towns[town])
+            console.log(countyForGraph.towns[town].stats.bagCount)
+        }
+    }
 }

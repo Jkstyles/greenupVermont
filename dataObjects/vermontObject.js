@@ -6,10 +6,8 @@ class Vermont {
         this.stats = {
             
         }
-        this.getTotalProfiles()
         this.getCounties()
         this.getTowns()
-        // this.buildCountyBagsArrays()
         this.getFirebaseData()
     }
     getCounties() {
@@ -39,23 +37,17 @@ class Vermont {
             let teamsObject = snapshot.val().teams
             let teamMembersObject = snapshot.val().teamMembers
             let trashDropsObject = snapshot.val().trashDrops
+            let profilesCountObject = snapshot.val().profiles
 
+            this.getTotalProfiles(profilesCountObject)
             this.buildCountyBagsArrays(trashDropsObject)
             this.sortTeamsAndMembersToTowns(teamsObject, teamMembersObject)
-
             this.getTotalTeams()
             createChoropleth()
         })
     }
 
     buildCountyBagsArrays(trashDropsObject) {
-        // console.log('trash populate start')
-        // var trashDrops = firebase
-        // .database()
-        // .ref('trashDrops/')
-        // .on('value', (snapshot) => {
-        //     let trashDropsObject = snapshot.val()
-            
             //for each trashdrop
             for (var key in trashDropsObject) {
                 let townBoundaries = L.geoJSON(townPolygons);
@@ -74,20 +66,6 @@ class Vermont {
                         //and escape the loop
                         break;
                     }
-                    // let done
-                    // // Then looks through each town in that county and finds the one whose name matches the one the trash drop is in.
-                    // for(let town in county.towns) {
-                    //     if(results === county.towns[town].name){
-                    //         //Then push the trash drop into the array in that county object we set up earlier.
-                    //         county.towns[town].bagDrops.push(trashDropsObject[key])
-                    //         //sets a flag to exit the loops
-                    //         done = true
-                    //         break;                       
-                    //     }
-                    //     if (done){
-                    //         break;
-                    //     }          
-                    // }  
                 }
             }
             
@@ -147,20 +125,13 @@ class Vermont {
             }
             console.log('populate finished.')
     }
-    getTotalProfiles() {
-        var teams = firebase
-        .database()
-        .ref('profiles/')
-        .on('value', (snapshot) => {
-            let profilesCountArray = []
-            let profilesCountObject = snapshot.val()
+    getTotalProfiles(profilesCountObject) {
+        let profilesCountArray = []
             for (var key in profilesCountObject) {
                 profilesCountArray.push(profilesCountObject[key])
             }
             totalProfiles = profilesCountArray.length
             this.stats.totalUsers = totalProfiles
-            
-        })
     }
     
     getBagStats() {
@@ -185,7 +156,7 @@ class Vermont {
         } 
         let totalCountyTeams = _.sum(teamCountArray)
         this.stats.totalTeams = totalCountyTeams + this.townlessTeamsArray.length
-        makeCountiesChart()
+        makeChart()
     }
     //Apparently each county in vermont has a number that refers just to that county.
     //This is a function that takes the County Number, listed for each town in our town polygons, and returns the county object that number corresponds to.
