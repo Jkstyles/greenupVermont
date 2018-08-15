@@ -147,3 +147,6 @@ img {
     top: 28em;
     border: 1px solid black;
 }
+#zoomBtn{
+    display: none;
+}

@@ -141,31 +141,54 @@ function highlightFeature(e) {
     info.update(layer.feature.properties)
 }
 
-function resetHighlight(e) {
-    // townBoundaries.resetStyle(e.target)
-    if(level == 'state'){
-    countyBoundaries.resetStyle(e.target);
-    info.update()
-    } else if (level == 'county'){
-        info.update()
+// function resetHighlight(e) {                             MAYBE WE CAN REMOVE THIS AND MOUSEOUT????
+//     // townBoundaries.resetStyle(e.target)
+//     if(level == 'state'){
+//     // countyBoundaries.resetStyle(e.target);
+//     info.update()
+//     } else if (level == 'county'){
+//         info.update()
+//     }
+// }
+function showBtnAtZoomOut(level){
+    
+    if (level === "state") {
+        document.getElementById('zoomBtn').style.display = 'none'     
+    } else if (level === 'county') {
+        document.getElementById('zoomBtn').style.display = 'block'
+    } else if (level === 'town') {
+        document.getElementById('zoomBtn').style.display = 'block'
+    }
+}
+function zoomFunctionality(state){
+    if (level === "state") {
+        document.getElementById('Btn').disabled 
+    } else if (level === 'county') {
+        document.getElementById('Btn').style.display = 'block'
+    } else if (level === 'town') {
+        document.getElementById('zoomBtn').style.display = 'block'
     }
 }
 
 function zoomToFeature(e) {
+    
     mymap.fitBounds(e.target.getBounds());
     console.log(e.target)
     currentCounty = e.target.feature.properties.CNTY
     level = (e.target.feature.properties.TOWNNAME ? 'town' : 'county')
+    console.log(level)
+    showBtnAtZoomOut(level)
     createChoropleth()
     //This Function doesn't exist yet. Make it in a new townMap.js file.
     //It should remove countyBoundaries and info from mymap and add the town versions.
     //moveToTownChoropleth()
+    // showBtnAtZoomOut()
 }
 
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
-        mouseout: resetHighlight,
+        // mouseout: resetHighlight,           MAYBE WE CAN REMOVE THIS AND RESET HIGHLIGHT????
         click: zoomToFeature
     });
 }
