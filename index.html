@@ -37,7 +37,7 @@
         <img src="./GreenupLogo.png" alt="Greenup Logo">
         <div id="title">Green Up Vermont Dashboard</div>
     </header>
-
+    
     <div class="statsColumn">
         <div id="odometer1" class="odometer">0000</div>
         <div id="odometer2" class="odometer">0000</div>
@@ -57,21 +57,20 @@
             <input type="radio" id="trashRadio" name="map Radio" onclick="createChoropleth('trash')" />
             <label for="trashRadio">Filter By Trash Drops</label>
         </div>
-
     </form>
-
+    
     <div class="mapColumn">
         <div id="mapid"></div>
     </div>
-
+    
     <div class="chart">
         <canvas id="barChart"></canvas>
     </div>
 
-    <script src="odometer.js"></script>
+    <script src="index.js"></script>
     <script src='countyMap.js'></script>
     <script src='charts.js'></script>
-    <script src="index.js"></script>
+    <script src="odometer.js"></script>
 
 </body>
 
