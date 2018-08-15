@@ -179,7 +179,7 @@ class Vermont {
         } 
         let totalCountyTeams = _.sum(teamCountArray)
         this.stats.totalTeams = totalCountyTeams + this.townlessTeamsArray.length
-        makeCountiesChart()
+        makeChart()
     }
     //Apparently each county in vermont has a number that refers just to that county.
     //This is a function that takes the County Number, listed for each town in our town polygons, and returns the county object that number corresponds to.
