@@ -42,9 +42,10 @@ class Vermont {
             this.getTotalProfiles(profilesCountObject)
             this.buildCountyBagsArrays(trashDropsObject)
             this.sortTeamsAndMembersToTowns(teamsObject, teamMembersObject)
-            this.getTotalTeams()
-            createChoropleth()
-            updateOdometer()
+            this.getTotalTeams();
+            createChoropleth();
+            updateOdometer();
+            updateLabels();
         })
     }
 
@@ -157,7 +158,9 @@ class Vermont {
         } 
         let totalCountyTeams = _.sum(teamCountArray)
         this.stats.totalTeams = totalCountyTeams + this.townlessTeamsArray.length
-        makeChart()
+        makeChart();
+        makeChart();
+        //This (intentional) repetition fixes the need-to-click-on-the-labels-to-see-the-bars bug. Better solution to come. But it makes a different but too, so it is commented out. Better solution to come. Fingers crossed.
 
     }
     //Apparently each county in vermont has a number that refers just to that county.
