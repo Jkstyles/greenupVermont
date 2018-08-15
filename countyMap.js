@@ -65,7 +65,35 @@ function teamCountOf(county) {
 // each of the counties in countyBoundaries already has a bounding box, addisons is at the variable below.
 // this would make zooming easy when we get around to that.
 // mymap.fitBounds(countyBoundaries._layers['51']._bounds)
-
+function getLocalColor(l) {
+    return l > 27 ? '#001333' :
+    l > 25 ? '#001c4c' :
+    l > 23 ? '#012768' :
+    l > 21 ? '#02358c' :
+    l > 19 ? '#0b3b8c' :
+    l > 17 ? '#15428e' :
+    l > 15 ? '#1c468e' :
+    l > 13 ? '#244c91' :
+    l > 11 ? '#2e5496' :
+    l > 9 ? '#3a5e9e' :
+    l > 7 ? '#4768a3' :
+    l > 5 ? '#5775aa' :
+    l > 3 ? '#6d89ba' :
+    l > 1 ? '#7f98c4' :
+    l > 0 ? '#a3bae2' :
+    l === 0 ?'#bfd2f2':
+    '#000000';
+}
+function localStyle(feature) {
+    return {
+        fillColor: getLocalColor(feature.properties.choroplethData),
+        weight: 2,
+        opacity: 1,
+        color: 'black',
+        dashArray: '',
+        fillOpacity: 0.8
+    };
+}
 function getColor(d) {
     return d > 27 ? '#043300' :
     d > 25 ? '#10410D' :
@@ -73,7 +101,7 @@ function getColor(d) {
     d > 21 ? '#295D27' :
     d > 19 ? '#366B34' :
     d > 17 ? '#427941' :
-    d > 15 ? '#F48748' :
+    d > 15 ? '#4c874b' :
     d > 13 ? '#5C955B' :
     d > 11 ? '#68A368' :
     d > 9 ? '#75B175' :
@@ -104,7 +132,7 @@ function highlightFeature(e) {
         weight: 3,
         color: 'black',
         dashArray: '',
-        fillOpacity: 1
+        fillOpacity: .7
     });
     
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -115,8 +143,12 @@ function highlightFeature(e) {
 
 function resetHighlight(e) {
     // townBoundaries.resetStyle(e.target)
+    if(level == 'state'){
     countyBoundaries.resetStyle(e.target);
     info.update()
+    } else if (level == 'county'){
+        info.update()
+    }
 }
 
 function zoomToFeature(e) {
@@ -167,7 +199,7 @@ function createTownMap(){
     console.log('create town called')
     if (townBoundaries) {mymap.removeLayer(townBoundaries)};
     townBoundaries = L.geoJson(townPolygons, {
-        style: style,
+        style: localStyle,
         onEachFeature: onEachFeature,
         filter: (feature, layer) => {
            return (feature.properties.CNTY === currentCounty ? true : false)
