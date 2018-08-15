@@ -1,4 +1,4 @@
-let currentCounty
+
 var mymap = L.map('mapid', {zoomControl: false, }).setView([44.0423, -72.6034], 8);
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -62,9 +62,6 @@ function teamCountOf(county) {
     return vermont.counties[county].stats.totalTeams
 }
 
-// each of the counties in countyBoundaries already has a bounding box, addisons is at the variable below.
-// this would make zooming easy when we get around to that.
-// mymap.fitBounds(countyBoundaries._layers['51']._bounds)
 function getLocalColor(l) {
     return l > 27 ? '#001333' :
     l > 25 ? '#001c4c' :
@@ -173,15 +170,10 @@ function zoomFunctionality(state){
 function zoomToFeature(e) {
     
     mymap.fitBounds(e.target.getBounds());
-    console.log(e.target)
     currentCounty = e.target.feature.properties.CNTY
     level = (e.target.feature.properties.TOWNNAME ? 'town' : 'county')
-    console.log(level)
     showBtnAtZoomOut(level)
     createChoropleth()
-    //This Function doesn't exist yet. Make it in a new townMap.js file.
-    //It should remove countyBoundaries and info from mymap and add the town versions.
-    //moveToTownChoropleth()
     // showBtnAtZoomOut()
 }
 
@@ -219,7 +211,6 @@ info.update = function (props) {
 };
 
 function createTownMap(){
-    console.log('create town called')
     if (townBoundaries) {mymap.removeLayer(townBoundaries)};
     townBoundaries = L.geoJson(townPolygons, {
         style: localStyle,
