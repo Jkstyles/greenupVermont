@@ -42,9 +42,10 @@ class Vermont {
             this.getTotalProfiles(profilesCountObject)
             this.buildCountyBagsArrays(trashDropsObject)
             this.sortTeamsAndMembersToTowns(teamsObject, teamMembersObject)
-            this.getTotalTeams()
-            createChoropleth()
-            updateOdometer()
+            this.getTotalTeams();
+            createChoropleth();
+            updateOdometer();
+            updateLabels();
         })
     }
 
