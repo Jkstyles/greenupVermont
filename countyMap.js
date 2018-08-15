@@ -1,4 +1,4 @@
-let currentCounty
+
 var mymap = L.map('mapid', {zoomControl: false, }).setView([44.0423, -72.6034], 8);
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -28,7 +28,7 @@ if (level === 'state') {
     let counties = countyPolygons.features
     for (let countyIndex in counties) {
         let targetCounty = counties[countyIndex].properties.CNTYNAME.toString().toLowerCase()
-        counties[countyIndex].properties.choroplethData = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : teamCountOf(targetCounty); 
+        counties[countyIndex].properties.choroplethData = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : userCountOf(targetCounty); 
     }
     mymap.removeLayer(countyBoundaries);
 
@@ -44,7 +44,7 @@ if (level === 'state') {
             for(let townPolygon in townPolygons.features){
                 townPolygon = townPolygons.features[townPolygon]
                 if (townPolygon.properties.TOWNNAME.toLowerCase() == town.name){
-                    townPolygon.properties.choroplethData = (dataType === 'trash')  ? town.stats.bagCount : town.stats.totalTeams; 
+                    townPolygon.properties.choroplethData = (dataType === 'trash')  ? town.stats.bagCount : (dataType === 'teams') ? town.stats.totalTeams : town.stats.userActivity; 
                     break
                 }
             }
@@ -62,9 +62,10 @@ function teamCountOf(county) {
     return vermont.counties[county].stats.totalTeams
 }
 
-// each of the counties in countyBoundaries already has a bounding box, addisons is at the variable below.
-// this would make zooming easy when we get around to that.
-// mymap.fitBounds(countyBoundaries._layers['51']._bounds)
+function userCountOf(county){
+    return vermont.counties[county].stats.userActivity
+}
+
 function getLocalColor(l) {
     return l > 27 ? '#001333' :
     l > 25 ? '#001c4c' :
@@ -141,15 +142,15 @@ function highlightFeature(e) {
     info.update(layer.feature.properties)
 }
 
-// function resetHighlight(e) {                             MAYBE WE CAN REMOVE THIS AND MOUSEOUT????
-//     // townBoundaries.resetStyle(e.target)
-//     if(level == 'state'){
-//     // countyBoundaries.resetStyle(e.target);
-//     info.update()
-//     } else if (level == 'county'){
-//         info.update()
-//     }
-// }
+function resetHighlight(e) {                             //MAYBE WE CAN REMOVE THIS AND MOUSEOUT????
+    if(!e.target.feature.properties.TOWNNAME){
+    countyBoundaries.resetStyle(e.target);
+    info.update()
+    } else if (e.target.feature.properties.TOWNNAME){
+    townBoundaries.resetStyle(e.target)
+    info.update()
+    }
+}
 function showBtnAtZoomOut(level){
     
     if (level === "state") {
@@ -173,22 +174,17 @@ function zoomFunctionality(state){
 function zoomToFeature(e) {
     
     mymap.fitBounds(e.target.getBounds());
-    console.log(e.target)
     currentCounty = e.target.feature.properties.CNTY
     level = (e.target.feature.properties.TOWNNAME ? 'town' : 'county')
-    console.log(level)
     showBtnAtZoomOut(level)
     createChoropleth()
-    //This Function doesn't exist yet. Make it in a new townMap.js file.
-    //It should remove countyBoundaries and info from mymap and add the town versions.
-    //moveToTownChoropleth()
     // showBtnAtZoomOut()
 }
 
 function onEachFeature(feature, layer) {
     layer.on({
         mouseover: highlightFeature,
-        // mouseout: resetHighlight,           MAYBE WE CAN REMOVE THIS AND RESET HIGHLIGHT????
+        mouseout: resetHighlight,           //MAYBE WE CAN REMOVE THIS AND RESET HIGHLIGHT????
         click: zoomToFeature
     });
 }
@@ -219,7 +215,6 @@ info.update = function (props) {
 };
 
 function createTownMap(){
-    console.log('create town called')
     if (townBoundaries) {mymap.removeLayer(townBoundaries)};
     townBoundaries = L.geoJson(townPolygons, {
         style: localStyle,

@@ -6,10 +6,8 @@ class Vermont {
         this.stats = {
             
         }
-        this.getTotalProfiles()
         this.getCounties()
         this.getTowns()
-        this.buildCountyBagsArrays()
         this.getFirebaseData()
     }
     getCounties() {
@@ -28,14 +26,28 @@ class Vermont {
             this.countyNumber(CNTYNum).towns[townName] = new Town(townName)
         }
     }
-    buildCountyBagsArrays() {
-        console.log('trash populate start')
-        var trashDrops = firebase
+
+    getFirebaseData() {
+        console.log('Getting Data')
+        var profiles = firebase
         .database()
-        .ref('trashDrops/')
+        .ref('/')
         .on('value', (snapshot) => {
-            let trashDropsObject = snapshot.val()
             console.log('data retrieved')
+            let teamsObject = snapshot.val().teams
+            let teamMembersObject = snapshot.val().teamMembers
+            let trashDropsObject = snapshot.val().trashDrops
+            let profilesCountObject = snapshot.val().profiles
+
+            this.getTotalProfiles(profilesCountObject)
+            this.buildCountyBagsArrays(trashDropsObject)
+            this.sortTeamsAndMembersToTowns(teamsObject, teamMembersObject)
+            this.getTotalTeams()
+            createChoropleth()
+        })
+    }
+
+    buildCountyBagsArrays(trashDropsObject) {
             //for each trashdrop
             for (var key in trashDropsObject) {
                 let townBoundaries = L.geoJSON(townPolygons);
@@ -54,43 +66,14 @@ class Vermont {
                         //and escape the loop
                         break;
                     }
-                    // let done
-                    // // Then looks through each town in that county and finds the one whose name matches the one the trash drop is in.
-                    // for(let town in county.towns) {
-                    //     if(results === county.towns[town].name){
-                    //         //Then push the trash drop into the array in that county object we set up earlier.
-                    //         county.towns[town].bagDrops.push(trashDropsObject[key])
-                    //         //sets a flag to exit the loops
-                    //         done = true
-                    //         break;                       
-                    //     }
-                    //     if (done){
-                    //         break;
-                    //     }          
-                    // }  
                 }
             }
-            console.log('populate finished.')
+            
             this.getBagStats()
             console.log(vermont)
-        })
+       
     }
     
-    getFirebaseData() {
-        var profiles = firebase
-        .database()
-        .ref('/')
-        .on('value', (snapshot) => {
-
-            let teamsObject = snapshot.val().teams
-            let teamMembersObject = snapshot.val().teamMembers
-            
-            this.sortTeamsAndMembersToTowns(teamsObject, teamMembersObject)
-
-            this.getTotalTeams()
-            createChoropleth()
-        })
-    }
     
     sortTeamsAndMembersToTowns(teamsObject, teamMembersObject){
         this.townlessTeamsArray = []
@@ -140,21 +123,15 @@ class Vermont {
             for (let county in this.counties) {
                 this.counties[county].getTeamAndUserStats()
             }
+            console.log('populate finished.')
     }
-    getTotalProfiles() {
-        var teams = firebase
-        .database()
-        .ref('profiles/')
-        .on('value', (snapshot) => {
-            let profilesCountArray = []
-            let profilesCountObject = snapshot.val()
+    getTotalProfiles(profilesCountObject) {
+        let profilesCountArray = []
             for (var key in profilesCountObject) {
                 profilesCountArray.push(profilesCountObject[key])
             }
             totalProfiles = profilesCountArray.length
             this.stats.totalUsers = totalProfiles
-            
-        })
     }
     
     getBagStats() {

@@ -3,6 +3,7 @@
     let totalBagsDropped;
     let totalTeams;
     let totalProfiles;
+    let currentCounty
     let level = 'state'
     // Initialize Firebase
     var config = {
