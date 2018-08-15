@@ -28,7 +28,7 @@ if (level === 'state') {
     let counties = countyPolygons.features
     for (let countyIndex in counties) {
         let targetCounty = counties[countyIndex].properties.CNTYNAME.toString().toLowerCase()
-        counties[countyIndex].properties.choroplethData = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : teamCountOf(targetCounty); 
+        counties[countyIndex].properties.choroplethData = (dataType === 'trash') ? bagCountOf(targetCounty) : (dataType === 'teams') ? teamCountOf(targetCounty) : userCountOf(targetCounty); 
     }
     mymap.removeLayer(countyBoundaries);
 
@@ -44,7 +44,7 @@ if (level === 'state') {
             for(let townPolygon in townPolygons.features){
                 townPolygon = townPolygons.features[townPolygon]
                 if (townPolygon.properties.TOWNNAME.toLowerCase() == town.name){
-                    townPolygon.properties.choroplethData = (dataType === 'trash')  ? town.stats.bagCount : town.stats.totalTeams; 
+                    townPolygon.properties.choroplethData = (dataType === 'trash')  ? town.stats.bagCount : (dataType === 'teams') ? town.stats.totalTeams : town.stats.userActivity; 
                     break
                 }
             }
@@ -60,6 +60,10 @@ function bagCountOf(county) {
 
 function teamCountOf(county) {
     return vermont.counties[county].stats.totalTeams
+}
+
+function userCountOf(county){
+    return vermont.counties[county].stats.userActivity
 }
 
 function getLocalColor(l) {

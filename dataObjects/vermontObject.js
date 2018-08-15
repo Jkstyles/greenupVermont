@@ -47,7 +47,7 @@ class Vermont {
             createChoropleth()
         })
     }
-    
+
     buildCountyBagsArrays(trashDropsObject) {
         // console.log('trash populate start')
         // var trashDrops = firebase
