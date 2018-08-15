@@ -40,11 +40,11 @@
     </header>
 
     <div class="statsColumn">
-        <div id="odometer1" class="odometer">00</div>
+        <div id="bagsOdometer" class="odometer">00</div>
         <div id="bagCounterLabel">Total Bags dropped in </div>
-        <div id="odometer2" class="odometer">00</div>
+        <div id="teamsOdometer" class="odometer">00</div>
         <div id="teamCounterLabel">Total Teams in </div>
-        <div id="odometer3" class="odometer">00</div>
+        <div id="usersOdometer" class="odometer">00</div>
         <div id="userCounterLabel">Total Participants in </div>
     </div>
 
@@ -76,16 +76,9 @@
         <canvas id="barChart"></canvas>
     </div>
 
+    <script src='odometers.js'></script>
     <script>
-        setTimeout(function () {
-            odometer1.innerHTML = 88;
-        }, 0);
-        setTimeout(function () {
-            odometer2.innerHTML = 88;
-        }, 0);
-        setTimeout(function () {
-            odometer3.innerHTML = 88;
-        }, 0);
+    updateOdometer();
     </script>
 
     <script src="index.js"></script>

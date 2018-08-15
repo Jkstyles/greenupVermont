@@ -51,7 +51,7 @@ img {
     grid-row: 2/5;
 }
 
-#odometer1 {
+#bagsOdometer {
     display: flex;
     flex-direction: row;
     justify-content: right;
@@ -71,7 +71,7 @@ img {
     font-size: 20px;
 }
 
-#odometer2 {
+#teamsOdometer {
     display: flex;
     flex-direction: row;
     justify-content: right;
@@ -91,7 +91,7 @@ img {
     font-size: 20px;
 }
 
-#odometer3 {
+#usersOdometer {
     display: flex;
     flex-direction: row;
     justify-content: right;

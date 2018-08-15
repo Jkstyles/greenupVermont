@@ -2,19 +2,19 @@
 
 function updateLabels() {
     
-    if (level === state) {
+    if (level === 'state') {
        
         document.getElementById('bagCounterLabel').innerText = "Total Bags in Vermont"
         document.getElementById('teamCounterLabel').innerText = "Total Teams in Vermont"
         document.getElementById('userCounterLabel').innerText = "Total Users in Vermont"
 
-    } else if (level === county) {
+    } else if (level === 'county') {
        
         document.getElementById('bagCounterLabel').innerText = "Total Bags in " + vermont.countyNumber(currentCounty).name.replace(/\w/, c => c.toUpperCase())
         document.getElementById('teamCounterLabel').innerText = "Total Teams in " + vermont.countyNumber(currentCounty).name.replace(/\w/, c => c.toUpperCase())
         document.getElementById('userCounterLabel').innerText = "Total Users in " + vermont.countyNumber(currentCounty).name.replace(/\w/, c => c.toUpperCase())
    
-    } else if (level === town) {
+    } else if (level === 'town') {
        
         document.getElementById('bagCounterLabel').innerText = "placeHolder"
         document.getElementById('teamCounterLabel').innerText = "placeHolder"
