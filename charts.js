@@ -211,7 +211,7 @@ let data = {
 
 
 
-//NOTE! 'The profiles' here is a cheat! Will need to be changed. This function is called on line 101 of vermont object
+//NOTE! 'The profiles' here is a cheat! Will need to be changed. This function is called in the vermont object and will eventually be called on every click.
 
 function makeCountiesChart(){
     counties = vermont.counties
@@ -222,7 +222,7 @@ function makeCountiesChart(){
     
     for (let county in vermont.counties) {
         bagsArray.push(vermont.counties[county].stats.bagCount);
-        profilesArray.push(vermont.counties[county].stats.totalTeams);
+        profilesArray.push(vermont.counties[county].stats.userActivity);
         teamsArray.push(vermont.counties[county].stats.totalTeams);
         labelsArray.push(vermont.counties[county].name);
         console.log("number of teams: " + vermont.counties[county].stats.totalTeams);
