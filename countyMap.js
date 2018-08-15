@@ -1,5 +1,5 @@
 
-var mymap = L.map('mapid', {zoomControl: false, }).setView([44.0423, -72.6034], 8);
+let mymap = L.map('mapid', {zoomControl: false, }).setView([44.0423, -72.6034], 8);
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     subdomains: 'abcd',
@@ -161,24 +161,26 @@ function showBtnAtZoomOut(level){
         document.getElementById('zoomBtn').style.display = 'block'
     }
 }
-function zoomFunctionality(state){
-    if (level === "state") {
-        document.getElementById('Btn').disabled 
-    } else if (level === 'county') {
-        document.getElementById('Btn').style.display = 'block'
-    } else if (level === 'town') {
-        document.getElementById('zoomBtn').style.display = 'block'
+function zoomFunctionality(level){
+    let getBtn = document.getElementById('btn')
+    getBtn.addEventListener('click', function(event){event.preventDefault()})
+    if (level === 'county'){
+        console.log('yo')
+        getBtn.addEventListener('click', mymap.setView([44.0423, -72.6034], 8) )
+        console.log(level)
     }
 }
 
 function zoomToFeature(e) {
-    
     mymap.fitBounds(e.target.getBounds());
+    console.log(e.target)
     currentCounty = e.target.feature.properties.CNTY
+    console.log(currentCounty)
     level = (e.target.feature.properties.TOWNNAME ? 'town' : 'county')
+    console.log(level)
     showBtnAtZoomOut(level)
+    zoomFunctionality()
     createChoropleth()
-    // showBtnAtZoomOut()
 }
 
 function onEachFeature(feature, layer) {
