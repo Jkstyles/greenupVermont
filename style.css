@@ -150,3 +150,12 @@ img {
 #zoomBtn{
     display: none;
 }
+#bagCounterLabel {
+    z-index: 1;
+}
+#teamCounterLabel {
+    z-index: 1;
+}
+#userCounterLabel {
+    z-index: 1;
+}
