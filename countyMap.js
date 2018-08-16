@@ -92,7 +92,7 @@ function localStyle(feature) {
         opacity: 1,
         color: 'black',
         dashArray: '',
-        fillOpacity: 1
+        fillOpacity: 1 
     };
 }
 function getColor(d) {
@@ -230,16 +230,16 @@ info.update = function (props) {
     }
     else if (level === 'county'){
         if (dataType === 'trash'){    
-            this._div.innerHTML = '<h4>' + 'Total Number of Bags by Town' + '</h4>' + (props ? 
-                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Bags' : 'Hover over a County')
+            this._div.innerHTML = '<h4>' + 'Total Number of Bags by Town' + '</h4>' + (props && props.TOWNNAME ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Bags' : 'Hover over a Town')
         }
         else if (dataType === 'users'){
-            this._div.innerHTML = '<h4>' + 'Total Number of Users by Town' + '</h4>' + (props ? 
-                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Users' : 'Hover over a County')
+            this._div.innerHTML = '<h4>' + 'Total Number of Users by Town' + '</h4>' + (props && props.TOWNNAME ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Users' : 'Hover over a Town')
         }
         else if (dataType === 'teams'){
-            this._div.innerHTML = '<h4>' + 'Total Number of Teams by Town' + '</h4>' + (props ? 
-                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Teams' : 'Hover over a County')
+            this._div.innerHTML = '<h4>' + 'Total Number of Teams by Town' + '</h4>' + (props && props.TOWNNAME ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Teams' : 'Hover over a Town')
         }
     }
     else if (level === 'town'){
