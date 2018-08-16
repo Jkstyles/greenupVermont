@@ -166,19 +166,17 @@ event.preventDefault()
 
     mymap.setView([44.0423, -72.6034], 8)
     level ='state'
-
-
+    mymap.removeLayer(townBoundaries)
+    updateLabels()
+    makeChart()
+    updateOdometer()
 }
 
 function zoomToFeature(e) {
     mymap.fitBounds(e.target.getBounds());
-    console.log(e.target)
     currentCounty = e.target.feature.properties.CNTY
-    console.log(currentCounty)
     level = (e.target.feature.properties.TOWNNAME ? 'town' : 'county')
-    console.log(level)
     showBtnAtZoomOut(level)
-    // zoomFunctionality()
     createChoropleth()
 // update the info. 
     updateLabels()

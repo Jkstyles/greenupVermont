@@ -4,6 +4,7 @@
     let totalTeams;
     let totalProfiles;
     let currentCounty
+    let currentTown
     let level = 'state'
     // Initialize Firebase
     var config = {
