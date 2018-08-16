@@ -34,22 +34,23 @@
 </head>
 
 <body class="container">
+        <div id=loadingScreen><span id="loadingText">loading...</span></div>
+
     <header>
         <img src="./GreenupLogo.png" alt="Greenup Logo">
         <div id="title">Green Up Vermont Dashboard</div>
     </header>
-
     <div class="statsColumn">
         <div class="bagCounter">
-            <div id="bagCounterLabel">Bags dropped in </div>
+            <div id="bagCounterLabel"></div>
             <div id="bagsOdometer" class="odometer">00</div>
         </div>
         <div class="teamCounter">
-            <div id="teamCounterLabel">Total Teams in </div>
+            <div id="teamCounterLabel"></div>
             <div id="teamsOdometer" class="odometer">00</div>
         </div>
         <div class="userCounter">
-            <div id="userCounterLabel">Total Participants in </div>
+            <div id="userCounterLabel"></div>
             <div id="usersOdometer" class="odometer">00</div>
         </div>
     </div>
@@ -82,19 +83,24 @@
         <canvas id="barChart"></canvas>
     </div>
 
-    <script src='odometers.js'></script>
     <script>
-    updateOdometer();
+    function removeLoading(){
+        document.getElementById('loadingScreen').style.display = 'none';
+    }
     </script>
 
     <script src="index.js"></script>
     <script src='countyMap.js'></script>
-    <!-- <script src='odometer.js'></script> -->
+    <script src='odometers.js'></script>
     <script src='charts.js'></script>
     <script src='updateLabels.js'></script>
+    <script>
+    function removeLoading(){
+        document.getElementById('loadingScreen').style.display = 'none';
+    }
+    </script>
  
 
 </body>
 
 </html>
-<!-- -->

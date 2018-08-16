@@ -176,3 +176,21 @@ img {
 #userCounterLabel {
     z-index: 1;
 }
+#loadingScreen {
+    height: 50%;
+    width: 50%;
+    background-color: rgba(255,255,255,.8);
+    z-index: 20;
+    display: block;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    border-radius: 15px;
+}
+#loadingText{
+    position: absolute;
+    top: 50%;
+    font-size: 25px;
+    padding-left: 44%
+   
+}
