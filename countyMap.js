@@ -161,14 +161,13 @@ function showBtnAtZoomOut(level){
         document.getElementById('zoomBtn').style.display = 'block'
     }
 }
-function zoomFunctionality(level){
-    let getBtn = document.getElementById('btn')
-    getBtn.addEventListener('click', function(event){event.preventDefault()})
-    if (level === 'county'){
-        console.log('yo')
-        getBtn.addEventListener('click', mymap.setView([44.0423, -72.6034], 8) )
-        console.log(level)
-    }
+function zoomFunctionality(){
+event.preventDefault()
+
+    mymap.setView([44.0423, -72.6034], 8)
+    level ='state'
+
+
 }
 
 function zoomToFeature(e) {
@@ -179,7 +178,7 @@ function zoomToFeature(e) {
     level = (e.target.feature.properties.TOWNNAME ? 'town' : 'county')
     console.log(level)
     showBtnAtZoomOut(level)
-    zoomFunctionality()
+    // zoomFunctionality()
     createChoropleth()
 }
 
@@ -205,11 +204,11 @@ info.update = function (props) {
     document.getElementById('trashRadio').checked ? 'trash' :
     document.getElementById('teamRadio').checked ? 'teams' :
     'users'
-    if (level == 'state'){
+    if (level === 'state'){
     this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props ? 
     '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
     : 'Hover over a county');
-    } else if(level = 'county'){
+    } else if(level === 'county'){
         this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props && props.TOWNNAME ? 
             '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
             : 'Hover over a town');

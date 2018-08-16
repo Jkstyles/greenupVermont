@@ -46,13 +46,11 @@
         <div id="odometer3" class="odometer">00</div>
         <div class="userCounter">Total Participants in </div>
     </div>
-
+    <div id='zoomBtn'onclick="zoomFunctionality()">
+            Back
+            </div>
     <form class="mapFilter">
-        <div id='zoomBtn'>
-            <button id='btn' >
-                Back
-            </button>
-        </div>
+        
         <div>
             <input type="radio" id="teamRadio" name="map Radio" onclick='createChoropleth()' checked />
             <label for="teamRadio">Filter By Team</label>
@@ -67,7 +65,7 @@
         </div>
     </form>
 
-    <div class="mapColumn">
+    <div class="mapColumn">   
         <div id="mapid"></div>
     </div>
 
