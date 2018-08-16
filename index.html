@@ -34,7 +34,7 @@
 </head>
 
 <body class="container">
-        <div id=loadingScreen><span id="loadingText">loading...</span></div>
+        <div id=loadingScreen><span id="loadingText">loading</span></div>
 
     <header>
         <img src="./GreenupLogo.png" alt="Greenup Logo">
@@ -98,6 +98,27 @@
     function removeLoading(){
         document.getElementById('loadingScreen').style.display = 'none';
     }
+   
+    function loadingAnimation0() {
+      document.getElementById('loadingText').innerText = 'loading';
+      setTimeout(loadingAnimation1, 200)
+    }
+    function loadingAnimation1() {
+        document.getElementById('loadingText').innerText = 'loading.'
+        setTimeout(loadingAnimation2, 200)
+    }
+    function loadingAnimation2() {
+        document.getElementById('loadingText').innerText = 'loading..'
+        setTimeout(loadingAnimation3, 200)
+    }
+    function loadingAnimation3() {
+        document.getElementById('loadingText').innerText = 'loading...'
+        setTimeout(loadingAnimation0, 200)
+
+    }
+      
+    
+    loadingAnimation0();
     </script>
  
 
