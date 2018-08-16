@@ -170,6 +170,7 @@ function zoomFunctionality(){
     updateLabels()
     makeChart()
     updateOdometer()
+    createChoropleth()
     showBtnAtZoomOut(level)
     currentTown = undefined
 }
