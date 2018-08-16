@@ -56,4 +56,12 @@ class County {
         this.stats.totalTeams = totalCountyTeams
         this.stats.userActivity = totalCountyUsers
     }
+    cleanStats(){
+        this.stats= {}
+        this.teams = Array(0)
+        this.bagDrops = Array(0)
+        for (let town in this.towns) {
+            this.towns[town].cleanStats()
+        }
+    }
 }

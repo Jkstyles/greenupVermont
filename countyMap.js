@@ -82,7 +82,7 @@ function getLocalColor(l) {
     l > 3 ? '#6d89ba' :
     l > 1 ? '#7f98c4' :
     l > 0 ? '#a3bae2' :
-    l === 0 ?'#FFFFFF':
+    l === 0 ?'#edf3ff':
     '#000000';
 }
 function localStyle(feature) {
@@ -111,7 +111,7 @@ function getColor(d) {
     d > 3 ? '#9ADB9C' :
     d > 1 ? '#A7E9A9' :
     d > 0 ? '#B4F8B6' :
-    d === 0 ?'#FFFFFF':
+    d === 0 ?'#f7fff7':
     '#000000';
 }
 
@@ -170,6 +170,7 @@ function zoomFunctionality(){
     updateLabels()
     makeChart()
     updateOdometer()
+    createChoropleth()
     showBtnAtZoomOut(level)
     currentTown = undefined
 }
