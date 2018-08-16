@@ -1,6 +1,8 @@
 
 function updateOdometer() {
- 
+ window.odometerOptions = {
+    auto: false
+ }
     if (level === 'state') {
  
         setTimeout(function () {

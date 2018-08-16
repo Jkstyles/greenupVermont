@@ -204,6 +204,7 @@ var info = L.control();
 
 info.onAdd = function (mymap) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+
     this.update();
     return this._div;
 };
