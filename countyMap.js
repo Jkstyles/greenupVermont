@@ -82,7 +82,7 @@ function getLocalColor(l) {
     l > 3 ? '#6d89ba' :
     l > 1 ? '#7f98c4' :
     l > 0 ? '#a3bae2' :
-    l === 0 ?'#bfd2f2':
+    l === 0 ?'#FFFFFF':
     '#000000';
 }
 function localStyle(feature) {
@@ -92,7 +92,7 @@ function localStyle(feature) {
         opacity: 1,
         color: 'black',
         dashArray: '',
-        fillOpacity: 0.8
+        fillOpacity: 1
     };
 }
 function getColor(d) {
@@ -111,7 +111,7 @@ function getColor(d) {
     d > 3 ? '#9ADB9C' :
     d > 1 ? '#A7E9A9' :
     d > 0 ? '#B4F8B6' :
-    d === 0 ?'#DFFFDF':
+    d === 0 ?'#FFFFFF':
     '#000000';
 }
 
