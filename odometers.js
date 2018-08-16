@@ -28,13 +28,13 @@ function updateOdometer() {
     } else if (level === 'town') {
        
         setTimeout(function () {
-            bagsOdometer.innerHTML = 'placeHolder'
+            bagsOdometer.innerHTML = 666
         }, 500);
         setTimeout(function () {
-            teamsOdometer.innerHTML = 'placeHolder'
+            teamsOdometer.innerHTML = 666
         }, 500);
         setTimeout(function () {
-            usersOdometer.innerHTML = 'placeHolder'
+            usersOdometer.innerHTML = 666
         }, 500);
    
     }

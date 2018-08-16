@@ -214,7 +214,7 @@ info.update = function (props) {
     this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props ? 
     '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
     : 'Hover over a county');
-    } else if(level = 'county'){
+    } else if(level === 'county'){
         this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props && props.TOWNNAME ? 
             '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
             : 'Hover over a town');
