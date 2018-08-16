@@ -207,16 +207,53 @@ info.update = function (props) {
     document.getElementById('trashRadio').checked ? 'trash' :
     document.getElementById('teamRadio').checked ? 'teams' :
     'users'
+
     if (level === 'state'){
-    this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props ? 
-    '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
-    : 'Hover over a county');
-    } else if(level === 'county'){
-        this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props && props.TOWNNAME ? 
-            '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
-            : 'Hover over a town');
+        if (dataType === 'trash'){
+            this._div.innerHTML = '<h4>' + 'Total Number of Bags by County' + '</h4>' + (props ? 
+                '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + 'Bags' : 'Hover over a County')
+        }
+        else if (dataType === 'users'){
+            this._div.innerHTML = '<h4>' + 'Total Number of Users by County' + '</h4>' + (props ? 
+                '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + 'Users' : 'Hover over a County')
+        }
+        else if (dataType === 'teams'){
+            this._div.innerHTML = '<h4>' + 'Total Number of Teams by County' + '</h4>' + (props ? 
+                '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + 'Teams' : 'Hover over a County')
+        }
     }
-};
+    else if (level === 'county'){
+        if (dataType === 'trash'){    
+            this._div.innerHTML = '<h4>' + 'Total Number of Bags by Town' + '</h4>' + (props ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Bags' : 'Hover over a County')
+        }
+        else if (dataType === 'users'){
+            this._div.innerHTML = '<h4>' + 'Total Number of Users by Town' + '</h4>' + (props ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Users' : 'Hover over a County')
+        }
+        else if (dataType === 'teams'){
+            this._div.innerHTML = '<h4>' + 'Total Number of Teams by Town' + '</h4>' + (props ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Teams' : 'Hover over a County')
+        }
+    }
+    else if (level === 'town'){
+        this._div.innerHTML = 'this is placeholder text'
+    }
+}
+
+//     if (level === 'state'){
+//     this._div.innerHTML =  '<h4>' + (dataType === 'trash' ?
+//          'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props ? 
+//     '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
+//     : 'Hover over a county');
+//     } else if(level === 'county'){
+//         this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props && props.TOWNNAME ? 
+//             '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
+//             : 'Hover over a town');
+//     } else if (level === 'town') {
+//         this._div.innerHTML = 'butt'
+//     }
+// }
 
 function createTownMap(){
     if (townBoundaries) {mymap.removeLayer(townBoundaries)};
