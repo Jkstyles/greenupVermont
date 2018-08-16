@@ -3,9 +3,9 @@
     let totalBagsDropped;
     let totalTeams;
     let totalProfiles;
-    let currentCounty
-    let currentTown
-    let level = 'state'
+    let currentCounty;
+    let currentTown;
+    let level = 'state';
     // Initialize Firebase
     var config = {
       apiKey: "AIzaSyAjwSCpOvLPgYcFr26V3gmfwJlGb-VtWAs",

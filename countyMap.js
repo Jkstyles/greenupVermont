@@ -162,7 +162,7 @@ function showBtnAtZoomOut(level){
     }
 }
 function zoomFunctionality(){
-event.preventDefault()
+// event.preventDefault()
 
     mymap.setView([44.0423, -72.6034], 8)
     level ='state'
@@ -170,11 +170,17 @@ event.preventDefault()
     updateLabels()
     makeChart()
     updateOdometer()
+    showBtnAtZoomOut(level)
+    currentTown = undefined
 }
 
 function zoomToFeature(e) {
     mymap.fitBounds(e.target.getBounds());
     currentCounty = e.target.feature.properties.CNTY
+    if (e.target.feature.properties.TOWNNAME) {
+    currentTownName = e.target.feature.properties.TOWNNAME.toLowerCase()
+    currentTown = vermont.countyNumber(currentCounty).towns[currentTownName]
+    }
     level = (e.target.feature.properties.TOWNNAME ? 'town' : 'county')
     showBtnAtZoomOut(level)
     createChoropleth()
