@@ -39,6 +39,7 @@ class Vermont {
             let trashDropsObject = snapshot.val().trashDrops
             let profilesCountObject = snapshot.val().profiles
 
+            this.cleanStats()
             this.getTotalProfiles(profilesCountObject)
             this.buildCountyBagsArrays(trashDropsObject)
             this.sortTeamsAndMembersToTowns(teamsObject, teamMembersObject)
@@ -210,6 +211,13 @@ class Vermont {
             case 1:
             return this.counties.addison
             break;
+        }
+    }
+    cleanStats(){
+        this.stats = {
+        }
+        for (let county in this.counties){
+            this.counties[county].cleanStats()
         }
     }
 }
