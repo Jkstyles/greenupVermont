@@ -28,13 +28,13 @@ function updateOdometer() {
     } else if (level === 'town') {
        
         setTimeout(function () {
-            bagsOdometer.innerHTML = 101
+            bagsOdometer.innerHTML = currentTown.stats.bagCount
         }, 200);
         setTimeout(function () {
-            teamsOdometer.innerHTML = 101
+            teamsOdometer.innerHTML = currentTown.stats.totalTeams
         }, 400);
         setTimeout(function () {
-            usersOdometer.innerHTML = 101
+            usersOdometer.innerHTML = currentTown.stats.userActivity
         }, 600);
    
     }
