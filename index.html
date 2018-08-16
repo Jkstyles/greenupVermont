@@ -30,27 +30,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Green Up Vermont Dashboard</title>
+
 </head>
 
 <body class="container">
+        <div id=loadingScreen><span id="loadingText">loading</span></div>
+
     <header>
         <img src="./GreenupLogo.png" alt="Greenup Logo">
         <div id="title">Green Up Vermont Dashboard</div>
     </header>
-
     <div class="statsColumn">
-        <div id="odometer1" class="odometer">00</div>
-        <div class="bagCounter">Total Bags dropped in </div>
-        <div id="odometer2" class="odometer">00</div>
-        <div class="teamCounter">Total Teams in </div>
-        <div id="odometer3" class="odometer">00</div>
-        <div class="userCounter">Total Participants in </div>
+        <div class="bagCounter">
+            <div id="bagCounterLabel"></div>
+            <div id="bagsOdometer" class="odometer">00</div>
+        </div>
+        <div class="teamCounter">
+            <div id="teamCounterLabel"></div>
+            <div id="teamsOdometer" class="odometer">00</div>
+        </div>
+        <div class="userCounter">
+            <div id="userCounterLabel"></div>
+            <div id="usersOdometer" class="odometer">00</div>
+        </div>
     </div>
-    <div id='zoomBtn'onclick="zoomFunctionality()">
-            Back
-            </div>
+
     <form class="mapFilter">
-        
+            <div id='zoomBtn'onclick="zoomFunctionality()">
+                    Back
+                    </div>
         <div>
             <input type="radio" id="teamRadio" name="map Radio" onclick='createChoropleth()' checked />
             <label for="teamRadio">Filter By Team</label>
@@ -72,23 +80,44 @@
     <div class="chart">
         <canvas id="barChart"></canvas>
     </div>
-
     <script>
-        setTimeout(function () {
-            odometer1.innerHTML = 88;
-        }, 0);
-        setTimeout(function () {
-            odometer2.innerHTML = 88;
-        }, 0);
-        setTimeout(function () {
-            odometer3.innerHTML = 88;
-        }, 0);
+    function removeLoading(){
+        document.getElementById('loadingScreen').style.display = 'none';
+    }
     </script>
 
     <script src="index.js"></script>
     <script src='countyMap.js'></script>
-    <!-- <script src='odometer.js'></script> -->
+    <script src='odometers.js'></script>
     <script src='charts.js'></script>
+    <script src='updateLabels.js'></script>
+    <script>
+    function removeLoading(){
+        document.getElementById('loadingScreen').style.display = 'none';
+    }
+   
+    function loadingAnimation0() {
+      document.getElementById('loadingText').innerText = 'loading';
+      setTimeout(loadingAnimation1, 200)
+    }
+    function loadingAnimation1() {
+        document.getElementById('loadingText').innerText = 'loading.'
+        setTimeout(loadingAnimation2, 200)
+    }
+    function loadingAnimation2() {
+        document.getElementById('loadingText').innerText = 'loading..'
+        setTimeout(loadingAnimation3, 200)
+    }
+    function loadingAnimation3() {
+        document.getElementById('loadingText').innerText = 'loading...'
+        setTimeout(loadingAnimation0, 200)
+
+    }
+      
+    
+    loadingAnimation0();
+    </script>
+ 
 
 </body>
 

@@ -180,6 +180,11 @@ function zoomToFeature(e) {
     showBtnAtZoomOut(level)
     // zoomFunctionality()
     createChoropleth()
+// update the info. 
+    updateLabels()
+    makeChart()
+    updateOdometer()
+
 }
 
 function onEachFeature(feature, layer) {
