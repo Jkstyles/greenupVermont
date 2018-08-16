@@ -5,37 +5,37 @@ function updateOdometer() {
  
         setTimeout(function () {
             bagsOdometer.innerHTML = vermont.stats.bagCount;
-        }, 500);
+        }, 200);
         setTimeout(function () {
             teamsOdometer.innerHTML = vermont.stats.totalTeams;
-        }, 500);
+        }, 400);
         setTimeout(function () {
             usersOdometer.innerHTML = vermont.stats.totalUsers;
-        }, 500);
+        }, 600);
    
     } else if (level === 'county') {
    
         setTimeout(function () {
             bagsOdometer.innerHTML = vermont.countyNumber(currentCounty).stats.bagCount
-        }, 500);
+        }, 200);
         setTimeout(function () {
             teamsOdometer.innerHTML = vermont.countyNumber(currentCounty).stats.totalTeams
-        }, 500);
+        }, 400);
         setTimeout(function () {
             usersOdometer.innerHTML = vermont.countyNumber(currentCounty).stats.userActivity
-        }, 500);
+        }, 600);
    
     } else if (level === 'town') {
        
         setTimeout(function () {
-            bagsOdometer.innerHTML = 666
-        }, 500);
+            bagsOdometer.innerHTML = 101
+        }, 200);
         setTimeout(function () {
-            teamsOdometer.innerHTML = 666
-        }, 500);
+            teamsOdometer.innerHTML = 101
+        }, 400);
         setTimeout(function () {
-            usersOdometer.innerHTML = 666
-        }, 500);
+            usersOdometer.innerHTML = 101
+        }, 600);
    
     }
 }
