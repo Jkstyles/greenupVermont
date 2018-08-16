@@ -5,7 +5,7 @@
     grid-template-rows: repeat(4 2fr) 3fr;
     grid-gap: 8px;
     background-color: #006f3b;
-    margin: 0;
+    margin: 50px;
     overflow: visible;
     font-family: 'Playfair Display', serif;
 }
@@ -42,6 +42,7 @@ img {
     grid-column: 1/2;
     grid-row: 2/5;
     background-color: #70A3AB;
+    border-radius: 5px;
 }
 
 #bagsOdometer {
@@ -148,12 +149,13 @@ img {
     padding-top: 10px;
     padding-bottom: 5px;
     background-color: #87c656;
+    border-radius: 5px;
 }
 
 .info {
     font-size: 15px;
     padding: 8px;
-    width: 62vw;
+    width: 750px;
     background: white;
     background: rgba(251, 175, 76, 0.5);
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
@@ -191,6 +193,10 @@ img {
     position: absolute;
     top: 50%;
     font-size: 25px;
-    padding-left: 44%
+    padding-left: 44%;
    
+}
+body{
+    margin: 50px;
+
 }

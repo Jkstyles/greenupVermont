@@ -61,7 +61,7 @@
                 Back
             </button>
         </div>
-        <div>
+        <div id>
             <input type="radio" id="teamRadio" name="map Radio" onclick='createChoropleth()' checked />
             <label for="teamRadio">Filter By Team</label>
         </div>
@@ -82,7 +82,6 @@
     <div class="chart">
         <canvas id="barChart"></canvas>
     </div>
-
     <script>
     function removeLoading(){
         document.getElementById('loadingScreen').style.display = 'none';
