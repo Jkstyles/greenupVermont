@@ -16,9 +16,9 @@ function updateLabels() {
    
     } else if (level === 'town') {
        
-        document.getElementById('bagCounterLabel').innerText = "placeHolder"
-        document.getElementById('teamCounterLabel').innerText = "placeHolder"
-        document.getElementById('userCounterLabel').innerText = "placeHolder"
+        document.getElementById('bagCounterLabel').innerText = "Total Bags in " + currentTown.name.replace(/\w/, c => c.toUpperCase())
+        document.getElementById('teamCounterLabel').innerText = "Total Teams in " + currentTown.name.replace(/\w/, c => c.toUpperCase())
+        document.getElementById('userCounterLabel').innerText = "Total Users in " + currentTown.name.replace(/\w/, c => c.toUpperCase())
     }
 
 }
