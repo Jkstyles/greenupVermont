@@ -33,7 +33,7 @@
 
 </head>
 
-<body class="container">
+<body class="container" id="top">
         <div id=loadingScreen><span id="loadingText">loading</span></div>
 
     <header>
@@ -70,13 +70,18 @@
         <div>
             <input type="radio" id="trashRadio" name="map Radio" onclick="createChoropleth()" />
             <label for="trashRadio">Filter By Trash Drops</label>
+            <a href="#barChart">Bar Graph</a>
         </div>
     </form>
 
+    <button id="mapTobtn">
+    <a href="#top">Map View</a>
+    </button>
+    
     <div class="mapColumn">   
         <div id="mapid"></div>
     </div>
-
+    
     <div class="chart">
         <canvas id="barChart"></canvas>
     </div>
