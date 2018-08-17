@@ -196,22 +196,21 @@ img {
     padding-left: 44%;
    
 }
-barChart {
+#toChart {
     grid-column: 2/3;
     grid-row: 2/3;
     padding: 6px;
     height: 35px;
     width: 100px;
-    /* margin: 15% 0 0 70%; */
+    margin: 15% 0 0 70%;
     font-size: 1em;
-    background: rgba(121, 197, 209, 0.5);
-    border: 1px solid black;
+    background: rgb(153, 194, 207);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
     cursor: pointer;
     z-index: 5;
 }
-#barChart a{
+#toChart a{
     text-decoration: none;
     color: black;
     font-family: 'Playfair Display', serif;
@@ -225,7 +224,6 @@ barChart {
     margin: 15% 0 0 70%;
     font-size: 1em;
     background: rgba(121, 197, 209, 0.5);
-    border: 1px solid black;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
     cursor: pointer;

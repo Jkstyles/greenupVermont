@@ -56,7 +56,7 @@
     </div>
 
     <form class="mapFilter">
-            <div id='zoomBtn'onclick="zoomFunctionality()">
+            <div id='zoomBtn'onclick="handleBackClick()">
                     Zoom Out
                     </div>
         <div>
@@ -70,7 +70,9 @@
         <div>
             <input type="radio" id="trashRadio" name="map Radio" onclick="createChoropleth()" />
             <label for="trashRadio">Filter By Trash Drops</label>
-            <button><a href="#barChart">Bar Graph</a></button>
+            <button id="toChart">
+            <a href="#barChart">Bar Graph</a>
+            </button>
         </div>
     </form>
 
