@@ -39,6 +39,7 @@ class Vermont {
             let trashDropsObject = snapshot.val().trashDrops
             let profilesCountObject = snapshot.val().profiles
 
+            this.cleanStats()
             this.getTotalProfiles(profilesCountObject)
             this.buildCountyBagsArrays(trashDropsObject)
             this.sortTeamsAndMembersToTowns(teamsObject, teamMembersObject)
@@ -161,8 +162,7 @@ class Vermont {
         let totalCountyTeams = _.sum(teamCountArray)
         this.stats.totalTeams = totalCountyTeams + this.townlessTeamsArray.length
         makeChart();
-        makeChart();
-        //This (intentional) repetition fixes the need-to-click-on-the-labels-to-see-the-bars bug. Better solution to come. But it makes a different but too, so it is commented out. Better solution to come. Fingers crossed.
+
 
     }
     //Apparently each county in vermont has a number that refers just to that county.
@@ -211,6 +211,13 @@ class Vermont {
             case 1:
             return this.counties.addison
             break;
+        }
+    }
+    cleanStats(){
+        this.stats = {
+        }
+        for (let county in this.counties){
+            this.counties[county].cleanStats()
         }
     }
 }

@@ -5,14 +5,20 @@ let teamsArray;
 let labelsArray;
 
 
-//NOTE! This function is called in the vermont object and will eventually be called on every map click.
-
 function makeChart() {
 
-    for (let i = 0; i < 2; i++) {
+    chartDiv = document.getElementsByClassName('chart')[0]
+    console.log(chartDiv.childNodes)
+    if (chartDiv.childNodes.length > 1)  {
+    while (chartDiv.firstChild) {
+        
+            chartDiv.removeChild(chartDiv.firstChild)
+        }
+    }
+
+        chartDiv.innerHTML = '<canvas id="barChart"></canvas>'
 
         let ctx = document.getElementById("barChart").getContext("2d");
-
         let data = {
             labels: labelsArray,
             datasets: [
@@ -33,7 +39,45 @@ function makeChart() {
                 }
             ]
         };
-        var myBarChart = new Chart(ctx, {
+        
+
+        counties = vermont.counties
+        bagsArray = data.datasets[0].data;
+        profilesArray = data.datasets[1].data;
+        teamsArray = data.datasets[2].data;
+        labelsArray = data.labels;
+
+        if (level === 'state') {
+            console.log(vermont.counties)
+             data.datasets[0].data =[];
+             data.datasets[1].data =[];
+             data.datasets[2].data =[];
+             data.labels = [];
+            for (let county in vermont.counties) {
+                data.datasets[0].data.push(vermont.counties[county].stats.bagCount);
+                data.datasets[1].data.push(vermont.counties[county].stats.userActivity);
+                data.datasets[2].data.push(vermont.counties[county].stats.totalTeams);
+                data.labels.push(vermont.counties[county].name.replace(/\w/, c => c.toUpperCase()));
+            }
+        }
+
+
+        else if (level === 'county') {
+            data.datasets[0].data =[];
+            data.datasets[1].data =[];
+            data.datasets[2].data =[];
+            data.labels = [];
+            let countyForGraph = vermont.countyNumber(currentCounty)
+            for (let town in countyForGraph.towns) {
+                data.datasets[0].data.push(countyForGraph.towns[town].stats.bagCount);
+                data.datasets[1].data.push(countyForGraph.towns[town].stats.userActivity);
+                data.datasets[2].data.push(countyForGraph.towns[town].stats.totalTeams);
+                data.labels.push(countyForGraph.towns[town].name.replace(/\w/, c => c.toUpperCase()));
+
+            }
+        }
+
+            var myBarChart = new Chart(ctx, {
             type: 'bar',
             data: data,
             options: {
@@ -57,40 +101,5 @@ function makeChart() {
                 }
             }
         });
-
-        counties = vermont.counties
-        bagsArray = data.datasets[0].data;
-        profilesArray = data.datasets[1].data;
-        teamsArray = data.datasets[2].data;
-        labelsArray = data.labels;
-
-        if (level === 'state') {
-            bagsArray = [];
-            profilesArray = [];
-            teamsArray = [];
-            labelsArray = [];
-            for (let county in vermont.counties) {
-                bagsArray.push(vermont.counties[county].stats.bagCount);
-                profilesArray.push(vermont.counties[county].stats.userActivity);
-                teamsArray.push(vermont.counties[county].stats.totalTeams);
-                labelsArray.push(vermont.counties[county].name.replace(/\w/, c => c.toUpperCase()));
-            }
-        }
-
-
-        else if (level === 'county') {
-            bagsArray = [];
-            profilesArray = [];
-            teamsArray = [];
-            labelsArray = [];
-            let countyForGraph = vermont.countyNumber(currentCounty)
-            for (let town in countyForGraph.towns) {
-                bagsArray.push(countyForGraph.towns[town].stats.bagCount);
-                profilesArray.push(countyForGraph.towns[town].stats.userActivity);
-                teamsArray.push(countyForGraph.towns[town].stats.totalTeams);
-                labelsArray.push(countyForGraph.towns[town].name.replace(/\w/, c => c.toUpperCase()));
-
-            }
-        }
-    }
+    
 }

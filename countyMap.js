@@ -82,7 +82,7 @@ function getLocalColor(l) {
     l > 3 ? '#6d89ba' :
     l > 1 ? '#7f98c4' :
     l > 0 ? '#a3bae2' :
-    l === 0 ?'#FFFFFF':
+    l === 0 ?'#edf3ff':
     '#000000';
 }
 function localStyle(feature) {
@@ -92,7 +92,7 @@ function localStyle(feature) {
         opacity: 1,
         color: 'black',
         dashArray: '',
-        fillOpacity: 1
+        fillOpacity: 1 
     };
 }
 function getColor(d) {
@@ -111,7 +111,7 @@ function getColor(d) {
     d > 3 ? '#9ADB9C' :
     d > 1 ? '#A7E9A9' :
     d > 0 ? '#B4F8B6' :
-    d === 0 ?'#FFFFFF':
+    d === 0 ?'#f7fff7':
     '#000000';
 }
 
@@ -170,6 +170,7 @@ function zoomFunctionality(){
     updateLabels()
     makeChart()
     updateOdometer()
+    createChoropleth()
     showBtnAtZoomOut(level)
     currentTown = undefined
 }
@@ -203,6 +204,7 @@ var info = L.control();
 
 info.onAdd = function (mymap) {
     this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+
     this.update();
     return this._div;
 };
@@ -230,36 +232,33 @@ info.update = function (props) {
     }
     else if (level === 'county'){
         if (dataType === 'trash'){    
-            this._div.innerHTML = '<h4>' + 'Total Number of Bags by Town' + '</h4>' + (props ? 
-                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Bags' : 'Hover over a County')
+            this._div.innerHTML = '<h4>' + 'Total Number of Bags by Town' + '</h4>' + (props && props.TOWNNAME ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Bags' : 'Hover over a Town')
         }
         else if (dataType === 'users'){
-            this._div.innerHTML = '<h4>' + 'Total Number of Users by Town' + '</h4>' + (props ? 
-                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Users' : 'Hover over a County')
+            this._div.innerHTML = '<h4>' + 'Total Number of Users by Town' + '</h4>' + (props && props.TOWNNAME ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Users' : 'Hover over a Town')
         }
         else if (dataType === 'teams'){
-            this._div.innerHTML = '<h4>' + 'Total Number of Teams by Town' + '</h4>' + (props ? 
-                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Teams' : 'Hover over a County')
+            this._div.innerHTML = '<h4>' + 'Total Number of Teams by Town' + '</h4>' + (props && props.TOWNNAME ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Teams' : 'Hover over a Town')
         }
     }
     else if (level === 'town'){
-        this._div.innerHTML = 'this is placeholder text'
+        if (dataType === 'trash'){    
+            this._div.innerHTML = '<h4>' + 'Total Number of Bags by Town' + '</h4>' + (props && props.TOWNNAME ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Bags' : 'Hover over a Town')
+        }
+        else if (dataType === 'users'){
+            this._div.innerHTML = '<h4>' + 'Total Number of Users by Town' + '</h4>' + (props && props.TOWNNAME ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Users' : 'Hover over a Town')
+        }
+        else if (dataType === 'teams'){
+            this._div.innerHTML = '<h4>' + 'Total Number of Teams by Town' + '</h4>' + (props && props.TOWNNAME ? 
+                '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + 'Teams' : 'Hover over a Town')
+        }
     }
 }
-
-//     if (level === 'state'){
-//     this._div.innerHTML =  '<h4>' + (dataType === 'trash' ?
-//          'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props ? 
-//     '<b>' + props.CNTYNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
-//     : 'Hover over a county');
-//     } else if(level === 'county'){
-//         this._div.innerHTML =  '<h4>' + (dataType === 'trash' ? 'Total Bags by' : 'Total Teams By ') + (level === 'state' ? 'County' : 'Town') + '</h4>' + (props && props.TOWNNAME ? 
-//             '<b>' + props.TOWNNAME + '</b><br />' + props.choroplethData + ' ' + (dataType === 'trash' ? "bags":'teams')
-//             : 'Hover over a town');
-//     } else if (level === 'town') {
-//         this._div.innerHTML = 'butt'
-//     }
-// }
 
 function createTownMap(){
     if (townBoundaries) {mymap.removeLayer(townBoundaries)};
