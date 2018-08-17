@@ -24,17 +24,17 @@ function makeChart() {
             datasets: [
                 {
                     label: "Bags",
-                    backgroundColor: "rgb(24, 27, 28)",
+                    backgroundColor: "#006f3b",
                     data: bagsArray
                 },
                 {
                     label: "Profiles",
-                    backgroundColor: "rgb(73, 135, 62)",
+                    backgroundColor: "#70A3AB",
                     data: profilesArray
                 },
                 {
                     label: "Teams",
-                    backgroundColor: "rgb(176, 192, 220)",
+                    backgroundColor: "#D8D036",
                     data: teamsArray
                 }
             ]
