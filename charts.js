@@ -28,7 +28,7 @@ function makeChart() {
                     data: bagsArray
                 },
                 {
-                    label: "Profiles",
+                    label: "Users",
                     backgroundColor: "#70A3AB",
                     data: profilesArray
                 },
