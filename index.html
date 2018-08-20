@@ -37,7 +37,7 @@
         <div id=loadingScreen><span id="loadingText">loading</span></div>
 
     <header>
-        <img src="./GreenupLogo.png" alt="Greenup Logo">
+        <a href="https://greenupvermont.org/" target="_blank"><img src="./GreenupLogo.png" alt="Greenup Logo"></a>
         <div id="title">Green Up Vermont Dashboard</div>
     </header>
     <div class="statsColumn">
@@ -55,24 +55,26 @@
         </div>
     </div>
 
-    <form class="mapFilter">
-            <div id='zoomBtn'onclick="zoomFunctionality()">
-                    Zoom Out
-                    </div>
+    <div class="mapFilter">
         <div>
             <input type="radio" id="teamRadio" name="map Radio" onclick='createChoropleth()' checked />
             <label for="teamRadio">Filter By Team</label>
         </div>
         <div>
-            <input type="radio" id="participantRadio" name="map Radio" onclick="createChoropleth()" />
-            <label for="participantRadio">Filter By Participants</label>
+            <input type="radio" id="userRadio" name="map Radio" onclick="createChoropleth()" />
+            <label for="userRadio">Filter By Users</label>
         </div>
         <div>
             <input type="radio" id="trashRadio" name="map Radio" onclick="createChoropleth()" />
             <label for="trashRadio">Filter By Trash Drops</label>
-            <button><a href="#barChart">Bar Graph</a></button>
         </div>
-    </form>
+        <div id='zoomBtn'onclick="handleBackClick()">
+                Zoom Out
+                </div>
+                <button id="toChart">
+                <a href="#barChart">Bar Graph</a>
+                </button>
+    </div>
 
     <button id="mapTobtn">
     <a href="#top">Map View</a>
@@ -96,33 +98,9 @@
     <script src='odometers.js'></script>
     <script src='charts.js'></script>
     <script src='updateLabels.js'></script>
-    <script>
-    function removeLoading(){
-        document.getElementById('loadingScreen').style.display = 'none';
-    }
-   
-    function loadingAnimation0() {
-      document.getElementById('loadingText').innerText = 'loading';
-      setTimeout(loadingAnimation1, 200)
-    }
-    function loadingAnimation1() {
-        document.getElementById('loadingText').innerText = 'loading.'
-        setTimeout(loadingAnimation2, 200)
-    }
-    function loadingAnimation2() {
-        document.getElementById('loadingText').innerText = 'loading..'
-        setTimeout(loadingAnimation3, 200)
-    }
-    function loadingAnimation3() {
-        document.getElementById('loadingText').innerText = 'loading...'
-        setTimeout(loadingAnimation0, 200)
-
-    }
-      
+    <script src="loading.js"></script>
+    <script>loadingAnimation0()</script>
     
-    loadingAnimation0();
-    </script>
- 
 
 </body>
 

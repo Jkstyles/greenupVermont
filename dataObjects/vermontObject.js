@@ -26,7 +26,7 @@ class Vermont {
             this.countyNumber(CNTYNum).towns[townName] = new Town(townName)
         }
     }
-
+ 
     getFirebaseData() {
         console.log('Getting Data')
         var profiles = firebase
