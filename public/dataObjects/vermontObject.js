@@ -8,7 +8,6 @@ class Vermont {
         }
         this.getCounties()
         this.getTowns()
-        this.getFirebaseData()
     }
     getCounties() {
         //Puts a county object for each Vermont county into the vermontObject
