@@ -273,3 +273,32 @@ input:checked {
 #mapTobtn:hover{
     background-color: rgba(236, 236, 236)
 }
+
+@media print {
+   body {
+   max-width: 400px;
+   }
+   #mapid {
+    height: 685px;
+    width: 500px;
+    margin-top: -29px;
+   }
+   .mapFilter{
+       display: none;
+   }
+   #title{
+    display: none;
+   }
+   header{
+    height: 20px;
+   }
+   #mapTobtn{
+    display: none;
+   }
+   img{
+       display: none;
+   }
+  .info{
+      display: none;
+  }
+}
