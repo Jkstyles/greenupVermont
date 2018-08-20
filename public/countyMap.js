@@ -46,7 +46,11 @@ if (level === 'state') {
 else if (level === 'county') {
     createTownpleth(dataType)
 }
-info.update()}
+killTheLegend()
+makeLegends(dataType)
+
+info.update()
+}
 
 function createTownpleth(dataType) {
     for(let county in vermont.counties){
@@ -197,6 +201,8 @@ function handleBackClick(){
     updateOdometer()
     createChoropleth()
     controlBackBtnVisibility(level)
+    // killTheLegend()
+    // makeLegends()
     currentTown = undefined
 }
 
@@ -215,6 +221,8 @@ function handleChoroplethClick(e) {
     updateLabels()
     makeChart()
     updateOdometer()
+    // killTheLegend()
+    // makeLegends()
 
 }
 
@@ -301,3 +309,4 @@ mymap.scrollWheelZoom.disable();
 
 
 info.addTo(mymap);
+
