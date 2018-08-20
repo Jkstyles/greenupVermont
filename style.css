@@ -45,7 +45,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: serif;
+    font-family: helvetica;
     font-kerning: .5em;
     font-size: 3em;
     height: 100%;
@@ -61,7 +61,7 @@ img {
     justify-content: left;
     align-items: center;
     grid-area: 2/1/3/2;
-    font-family: serif;
+    font-family: helvetica;
     font-size: 1.5em;
     height: 66%;
     background-color: #70A3AB;
@@ -73,7 +73,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: serif;
+    font-family: helvetica;
     font-size: 3em;
     height: 100%;
     grid-area: 3/1/4/2;
@@ -88,7 +88,7 @@ img {
     align-items: center;
     justify-content: left;
     grid-area: 3/1/4/2;
-    font-family: serif;
+    font-family: helvetica;
     font-size: 1.5em;
     height: 66%;
     background-color: #70A3AB;
@@ -100,7 +100,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: serif;
+    font-family: helvetica;
     grid-area: 4/1/5/2;
     font-size: 3em;
     height: 100%;
@@ -116,7 +116,7 @@ img {
     align-items: center;
     justify-content: left;
     grid-area: 4/1/5/2;
-    font-family: serif;
+    font-family: Helvetica;
     font-size: 1.5em;
     height: 66%;
     margin: 6% 15% 6% 0;
@@ -146,6 +146,7 @@ img {
     text-align: center;
     justify-content: space-around;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
     padding-top: 10px;
     padding-bottom: 5px;
     background-color: #87c656;
@@ -244,7 +245,7 @@ input:checked {
 #toChart a{
     text-decoration: none;
     color: black;
-    font-family: 'Playfair Display', serif;
+    font-family: helvetica;
 }
 #toChart:hover{
     background-color: rgba(236, 236, 236)
@@ -267,7 +268,7 @@ input:checked {
 #mapTobtn a{
     text-decoration: none;
     color: black;
-    font-family: 'Playfair Display', serif;
+    font-family: helvetica;
 }
 #mapTobtn:hover{
     background-color: rgba(236, 236, 236)
