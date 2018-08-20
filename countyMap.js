@@ -29,7 +29,8 @@ if (level === 'state') {
 } 
 else if (level === 'county') {
     createTownpleth(dataType)
-}}
+}
+info.update()}
 
 function createTownpleth(dataType) {
     for(let county in vermont.counties){
