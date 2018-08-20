@@ -30,6 +30,9 @@ if (level === 'state') {
 else if (level === 'county') {
     createTownpleth(dataType)
 }
+killTheLegend()
+makeLegends(dataType)
+}
 info.update()}
 
 function createTownpleth(dataType) {
@@ -181,6 +184,8 @@ function handleBackClick(){
     updateOdometer()
     createChoropleth()
     controlBackBtnVisibility(level)
+    // killTheLegend()
+    // makeLegends()
     currentTown = undefined
 }
 
@@ -199,6 +204,8 @@ function handleChoroplethClick(e) {
     updateLabels()
     makeChart()
     updateOdometer()
+    // killTheLegend()
+    // makeLegends()
 
 }
 
@@ -284,3 +291,4 @@ mymap.scrollWheelZoom.disable();
 
 
 info.addTo(mymap);
+
