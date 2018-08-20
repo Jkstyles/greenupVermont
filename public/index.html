@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- chart library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <!-- map style -->
@@ -13,11 +16,13 @@
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
     <!-- firebase databse -->
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.0/firebase-auth.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.js'></script>
     <!-- odometer style -->
-    <link rel="stylesheet" href="http://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
-    <script src="http://github.hubspot.com/odometer/odometer.js"></script>
+    <link rel="stylesheet" href="https://github.hubspot.com/odometer/themes/odometer-theme-minimal.css" />
+    <script src="https://github.hubspot.com/odometer/odometer.js"></script>
     <!-- custom data libraries -->
     <script src="Simplified_County_Boundaries.js"></script>
     <script src='dataObjects/townClass.js'></script>
@@ -26,9 +31,6 @@
     <script src='townPolygons.js'></script>
     <!-- HTML styling -->
     <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Green Up Vermont Dashboard</title>
 
 </head>
@@ -37,8 +39,11 @@
         <div id=loadingScreen><span id="loadingText">loading</span></div>
 
     <header>
+        <div id="title">
         <a href="https://greenupvermont.org/" target="_blank"><img src="./GreenupLogo.png" alt="Greenup Logo"></a>
-        <div id="title">Green Up Vermont Dashboard</div>
+        <div>Green Up Vermont Dashboard</div>
+        </div>
+        <a href="javascript:window.print()" id="printBtn"><img src="./printer-icon.png" alt="print this page" class="printer"/>Print or Save</a>
     </header>
     <div class="statsColumn">
         <div class="bagCounter">
@@ -55,30 +60,28 @@
         </div>
     </div>
 
-    <div class="mapFilter">
-        <div>
+    <span class="mapFilter">
+        <div id='buttonStyle'>
             <input type="radio" id="teamRadio" name="map Radio" onclick='createChoropleth()' checked />
             <label for="teamRadio">Filter By Team</label>
         </div>
-        <div>
+        <div id='buttonStyle'>
             <input type="radio" id="userRadio" name="map Radio" onclick="createChoropleth()" />
             <label for="userRadio">Filter By Users</label>
         </div>
-        <div>
+        <div id='buttonStyle'>
             <input type="radio" id="trashRadio" name="map Radio" onclick="createChoropleth()" />
             <label for="trashRadio">Filter By Trash Drops</label>
         </div>
-        <div id='zoomBtn'onclick="handleBackClick()">
+        <div id='zoomBtn' onclick="handleBackClick()">
                 Zoom Out
                 </div>
-                <button id="toChart">
-                <a href="#barChart">Bar Graph</a>
-                </button>
-    </div>
+                <a href="#barChart" id="toChart">Bar Graph</a>
+            </span>
 
-    <button id="mapTobtn">
-    <a href="#top">Map View</a>
-    </button>
+    
+    <a href="#top" id="mapTobtn">Map View</a>
+    
     
     <div class="mapColumn">   
         <div id="mapid"></div>

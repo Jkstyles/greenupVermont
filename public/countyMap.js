@@ -33,6 +33,7 @@ else if (level === 'county') {
 killTheLegend()
 makeLegends(dataType)
 }
+info.update()}
 
 function createTownpleth(dataType) {
     for(let county in vermont.counties){
