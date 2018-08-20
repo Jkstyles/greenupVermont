@@ -75,6 +75,18 @@ function makeChart() {
                 data.labels.push(countyForGraph.towns[town].name.replace(/\w/, c => c.toUpperCase()));
 
             }
+        } else if (level === 'town') {
+            data.datasets[0].data =[];
+            data.datasets[1].data =[];
+            data.datasets[2].data =[];
+            data.labels = [];
+
+                data.datasets[0].data.push(currentTown.stats.bagCount);
+                data.datasets[1].data.push(currentTown.stats.userActivity);
+                data.datasets[2].data.push(currentTown.stats.totalTeams);
+                data.labels.push(currentTown.name.replace(/\w/, c => c.toUpperCase()));
+
+
         }
 
             var myBarChart = new Chart(ctx, {
