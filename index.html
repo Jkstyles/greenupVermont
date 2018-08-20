@@ -58,16 +58,16 @@
         </div>
     </div>
 
-    <div class="mapFilter">
-        <div>
+    <span class="mapFilter">
+        <div id='buttonStyle'>
             <input type="radio" id="teamRadio" name="map Radio" onclick='createChoropleth()' checked />
             <label for="teamRadio">Filter By Team</label>
         </div>
-        <div>
+        <div id='buttonStyle'>
             <input type="radio" id="userRadio" name="map Radio" onclick="createChoropleth()" />
             <label for="userRadio">Filter By Users</label>
         </div>
-        <div>
+        <div id='buttonStyle'>
             <input type="radio" id="trashRadio" name="map Radio" onclick="createChoropleth()" />
             <label for="trashRadio">Filter By Trash Drops</label>
         </div>
@@ -77,7 +77,7 @@
                 <button id="toChart">
                 <a href="#barChart">Bar Graph</a>
                 </button>
-    </div>
+            </span>
 
     <button id="mapTobtn">
     <a href="#top">Map View</a>
