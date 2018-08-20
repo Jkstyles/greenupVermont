@@ -48,7 +48,6 @@ class Vermont {
             updateLabels();
             removeLoading();
             updateOdometer();
-
         })
     }
 
@@ -76,7 +75,6 @@ class Vermont {
             
             this.getBagStats()
             console.log(vermont)
-       
     }
     
     
