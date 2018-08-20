@@ -273,14 +273,15 @@ input:checked {
 #mapTobtn:hover{
     background-color: rgba(236, 236, 236)
 }
-
+#printBtn{
+    
+}
 @media print {
    body {
    max-width: 400px;
    }
    #mapid {
-    height: 685px;
-    width: 500px;
+    width: 600px;
     margin-top: -29px;
    }
    .mapFilter{
@@ -301,4 +302,10 @@ input:checked {
   .info{
       display: none;
   }
+  .chart{
+      width: 800px;
+  }
+  .leaflet-control-attribution{
+    display:none;
+}
 }
