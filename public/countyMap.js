@@ -1,12 +1,28 @@
 
 let mymap = L.map('mapid', {zoomControl: false, }).setView([44.0423, -72.6034], 8);
-L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-    subdomains: 'abcd',
-    maxZoom: 19,
-    id: 'mapbox.streets',
+
+
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}{r}.png', 
+            'http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+                subdomains: 'abcd',
+                maxZoom: 19,
+                id: 'mapbox.streets',
+
+}).addTo(mymap); 
+mymap.createPane('labels');
+mymap.getPane('labels').style.zIndex = 650;
+mymap.getPane('labels').style.pointerEvents = 'none';
+
+
+
+
+var positronLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+        attribution: '©OpenStreetMap, ©CartoDB',
+        pane: 'labels'
 }).addTo(mymap);
 
+    
 let townBoundaries
 let countyBoundaries = L.geoJson(countyPolygons, {
         fillColor: '#1D4F1A',
@@ -14,7 +30,7 @@ let countyBoundaries = L.geoJson(countyPolygons, {
         opacity: 1,
         color: 'black',
         dashArray: '',
-        fillOpacity: 0.6
+        fillOpacity: 0.6,
 }).addTo(mymap)
 
 function createChoropleth() {
@@ -274,6 +290,7 @@ function updateInfoBoxAtStateLevel(dataType, props) {
 }
 
 function createTownMap(){
+    
     if (townBoundaries) {mymap.removeLayer(townBoundaries)};
     townBoundaries = L.geoJson(townPolygons, {
         style: localStyle,
