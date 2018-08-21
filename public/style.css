@@ -41,7 +41,11 @@ img {
     text-shadow: 2px 4px 5px rgba(0,0,0,0.4);
     font-size: 2.5em;
 }
+#printBtn:hover{
+    color:#8dc63f;
+}
 #printBtn{
+    cursor:pointer;
     display: inline-flex;
     align-items: center;
     text-decoration: none;
