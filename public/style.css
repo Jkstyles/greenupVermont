@@ -6,11 +6,12 @@ span.class[div]{
 .container {
     display: grid;
     height: 100vmax;
+    max-width: 85vw;
     grid-template-columns: minmax(200px, 1fr) minmax(300px, 2fr);
     grid-template-rows: repeat(4 2fr) 3fr;
     grid-row-gap: 10px;
     background-color: #006f3b;
-    margin: 0 50px 10px 50px;
+    margin-left: 50px;
     overflow: visible;
     font-family: 'Playfair Display', serif;
 }
@@ -152,7 +153,7 @@ img {
     grid-row: 5/6;
     background-color: #ededed;
     border-radius: 5px;
-    width: 100%;
+    max-width: 1200px;
 }
 .mapColumn {
     grid-column: 2/3;
@@ -325,8 +326,9 @@ input:checked {
     overflow: hidden; 
   }
    #mapid {
-    min-width: 600px;
+    min-width: 800px;
     margin-top: -29px;
+    border: 1px solid black;
    }
    .mapFilter{
     display: none;
@@ -337,6 +339,17 @@ input:checked {
    header{
     height: 20px;
    }
+   legend {
+    border: 1px solid black;
+   }
+   .legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+    -webkit-print-color-adjust: exact;
+ }
    #mapTobtn{
     display: none;
    }
@@ -346,11 +359,12 @@ input:checked {
   .info{
     display: none;
     }
-    .chart{
-    width: 800px;
+    #barChart{
     height: 100%;
-    overflow: show;
+    width: 100%;
+    border: 1px solid black;
     }
+    
 .leaflet-control-attribution{
     display:none;
 }
