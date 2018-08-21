@@ -3,7 +3,7 @@ function makeLegends(dataType) {
 
     if (level === 'state' && dataType === 'teams')  {
 
-        legend = L.control({ position: 'bottomright' });
+        legend = L.control({ position: 'bottomleft' });
 
         legend.onAdd = function (mymap) {
 
@@ -27,7 +27,7 @@ function makeLegends(dataType) {
 
     if (level === 'state' && dataType === 'users')  {
 
-        legend = L.control({ position: 'bottomright' });
+        legend = L.control({ position: 'bottomleft' });
 
         legend.onAdd = function (mymap) {
 
@@ -49,7 +49,7 @@ function makeLegends(dataType) {
     }
     if (level === 'state' && dataType === 'trash')  {
 
-        legend = L.control({ position: 'bottomright' });
+        legend = L.control({ position: 'bottomleft' });
 
         legend.onAdd = function (mymap) {
 
@@ -71,7 +71,7 @@ function makeLegends(dataType) {
     }
     if (level === 'county' && dataType === 'trash' || level === 'town' && dataType === 'trash')  {
 
-        legend = L.control({ position: 'bottomright' });
+        legend = L.control({ position: 'bottomleft' });
 
         legend.onAdd = function (mymap) {
 
@@ -93,7 +93,7 @@ function makeLegends(dataType) {
     }
     if (level === 'county' && dataType === 'users' || level === 'town' && dataType === 'users')  {
 
-        legend = L.control({ position: 'bottomright' });
+        legend = L.control({ position: 'bottomleft' });
 
         legend.onAdd = function (mymap) {
 
@@ -115,7 +115,7 @@ function makeLegends(dataType) {
     }
     if (level === 'county' && dataType === 'teams' || level === 'town' && dataType === 'teams')  {
 
-        legend = L.control({ position: 'bottomright' });
+        legend = L.control({ position: 'bottomleft' });
 
         legend.onAdd = function (mymap) {
 

@@ -32,4 +32,17 @@
       var errorMessage = error.message;
       throw ("There has been a problem <br>" + errorCode +"<br>" + errorMessage)
     });
+
+    function handlePrint(){
+      let chartDiv = document.getElementsByClassName('chart')[0]
+      console.log(chartDiv)
+     let barChart = document.getElementById('barChart')
+     if(barChart) {
+      chartImg = barChart.toDataURL()
+      console.log(chartImg)
+    
+      chartDiv.innerHTML = '<img id="chartImg" src="' + chartImg + '">'
+     }
+     setTimeout(() => window.print(), 100)
+    }
     let vermont = new Vermont
