@@ -358,6 +358,7 @@ input:checked {
     margin-right: 8px;
     opacity: 0.7;
     -webkit-print-color-adjust: exact;
+    
  }
    #mapTobtn{
     display: none;
