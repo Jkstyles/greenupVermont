@@ -10,15 +10,15 @@ function updateLabels() {
 
     } else if (level === 'county') {
        
-        document.getElementById('bagCounterLabel').innerText = "Total Bags in " + vermont.countyNumber(currentCounty).name.replace(/\w/, c => c.toUpperCase())
-        document.getElementById('teamCounterLabel').innerText = "Total Teams in " + vermont.countyNumber(currentCounty).name.replace(/\w/, c => c.toUpperCase())
-        document.getElementById('userCounterLabel').innerText = "Total Users in " + vermont.countyNumber(currentCounty).name.replace(/\w/, c => c.toUpperCase())
+        document.getElementById('bagCounterLabel').innerText = "Total Bags in " + vermont.countyNumber(currentCounty).name.replace(/\b\w/g, c => c.toUpperCase())
+        document.getElementById('teamCounterLabel').innerText = "Total Teams in " + vermont.countyNumber(currentCounty).name.replace(/\b\w/g, c => c.toUpperCase())
+        document.getElementById('userCounterLabel').innerText = "Total Users in " + vermont.countyNumber(currentCounty).name.replace(/\b\w/g, c => c.toUpperCase())
    
     } else if (level === 'town') {
        
-        document.getElementById('bagCounterLabel').innerText = "Total Bags in " + currentTown.name.replace(/\w/, c => c.toUpperCase())
-        document.getElementById('teamCounterLabel').innerText = "Total Teams in " + currentTown.name.replace(/\w/, c => c.toUpperCase())
-        document.getElementById('userCounterLabel').innerText = "Total Users in " + currentTown.name.replace(/\w/, c => c.toUpperCase())
+        document.getElementById('bagCounterLabel').innerText = "Total Bags in " + currentTown.name.replace(/\b\w/g, c => c.toUpperCase())
+        document.getElementById('teamCounterLabel').innerText = "Total Teams in " + currentTown.name.replace(/\b\w/g, c => c.toUpperCase())
+        document.getElementById('userCounterLabel').innerText = "Total Users in " + currentTown.name.replace(/\b\w/g, c => c.toUpperCase())
     }
 
 }

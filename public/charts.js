@@ -57,7 +57,7 @@ function makeChart() {
                 data.datasets[0].data.push(vermont.counties[county].stats.bagCount);
                 data.datasets[1].data.push(vermont.counties[county].stats.userActivity);
                 data.datasets[2].data.push(vermont.counties[county].stats.totalTeams);
-                data.labels.push(vermont.counties[county].name.replace(/\w/, c => c.toUpperCase()));
+                data.labels.push(vermont.counties[county].name.replace(/\b\w/g, c => c.toUpperCase()));
             }
         }
 
@@ -72,7 +72,7 @@ function makeChart() {
                 data.datasets[0].data.push(countyForGraph.towns[town].stats.bagCount);
                 data.datasets[1].data.push(countyForGraph.towns[town].stats.userActivity);
                 data.datasets[2].data.push(countyForGraph.towns[town].stats.totalTeams);
-                data.labels.push(countyForGraph.towns[town].name.replace(/\w/, c => c.toUpperCase()));
+                data.labels.push(countyForGraph.towns[town].name.replace(/\b\w/g, c => c.toUpperCase()));
 
             }
         } else if (level === 'town') {
@@ -84,7 +84,7 @@ function makeChart() {
                 data.datasets[0].data.push(currentTown.stats.bagCount);
                 data.datasets[1].data.push(currentTown.stats.userActivity);
                 data.datasets[2].data.push(currentTown.stats.totalTeams);
-                data.labels.push(currentTown.name.replace(/\w/, c => c.toUpperCase()));
+                data.labels.push(currentTown.name.replace(/\b\w/g, c => c.toUpperCase()));
 
 
         }
