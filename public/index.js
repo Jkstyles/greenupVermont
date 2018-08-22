@@ -34,7 +34,7 @@
     });
 
     function handlePrint(){
-      let chartDiv = document.getElementsByClassName('chart')[0]
+      let chartDiv = document.getElementsByClassName('hiddenChart')[0]
       console.log(chartDiv)
      let barChart = document.getElementById('barChart')
      if(barChart) {

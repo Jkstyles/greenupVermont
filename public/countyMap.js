@@ -45,6 +45,8 @@ if (level === 'state') {
 } 
 else if (level === 'county') {
     createTownpleth(dataType)
+} else if (level === 'town') {
+    createTownpleth(dataType)
 }
 killTheLegend()
 makeLegends(dataType)
