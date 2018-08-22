@@ -343,7 +343,9 @@ input:checked {
     width: 95%; 
     margin: 0px auto 0 auto;
     padding: 0;
-
+  }
+  #printBtn{
+      display: none;
   }
    #mapid {
     min-width: 800px;
