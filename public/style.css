@@ -390,6 +390,9 @@ input:checked {
     margin-right: 8px;
     opacity: 0.7;
     -webkit-print-color-adjust: exact;
+    -moz-print-color-adjust: exact;
+    -O-print-color-adjust: exact;
+    -MS-print-color-adjust: exact;
 }
 .legend {
     line-height: 18px;
