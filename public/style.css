@@ -89,7 +89,7 @@ img {
     font-family: helvetica neue;
     font-size: 20px;
     font-weight: 300;
-    height: 66%;
+    height: 175px;
     background-color: #70A3AB;
     margin: 10% 15% 10% 0;
     border-radius: 5px;
@@ -118,7 +118,7 @@ img {
     font-family: helvetica neue;
     font-size: 20px;
     font-weight: 300;
-    height: 66%;
+    height: 175px;
     background-color: #70A3AB;
     margin: 10% 15% 10% 0;
     border-radius: 5px;
@@ -148,7 +148,7 @@ img {
     font-family: helvetica neue;
     font-size: 20px;
     font-weight: 300;
-    height: 66%;
+    height: 175px;
     margin: 10% 15% 10% 0;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
@@ -179,6 +179,7 @@ img {
     justify-content: space-around;
     align-items: center;
     font-family: helvetica neue;
+    height: 55px;
     padding-top: 10px;
     padding-bottom: 5px;
     background-color: #87c656;
@@ -276,7 +277,7 @@ input:checked {
     text-align: center;
     color: black;
     font-size: 1em;
-    background: rgb(153, 194, 207);
+    background: rgb(251, 175, 76);
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
@@ -361,14 +362,6 @@ input:checked {
    legend {
     border: 1px solid black;
    }
-   .legend i {
-    width: 18px;
-    height: 18px;
-    float: left;
-    margin-right: 8px;
-    opacity: 0.7;
-    -webkit-print-color-adjust: exact;
- }
    #mapTobtn{
     display: none;
    }
@@ -388,6 +381,7 @@ input:checked {
     float: left;
     margin-right: 8px;
     opacity: 0.7;
+    color-adjust: exact;
     -webkit-print-color-adjust: exact;
     -moz-print-color-adjust: exact;
     -O-print-color-adjust: exact;

@@ -43,6 +43,6 @@
     
       chartDiv.innerHTML = '<img id="chartImg" src="' + chartImg + '">'
      }
-     setTimeout(() => window.print(), 100)
+     window.setTimeout(() => window.print(), 100)
     }
     let vermont = new Vermont
