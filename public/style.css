@@ -15,7 +15,7 @@ span.class[div]{
     margin-right: auto;
     padding: 0 15px 0 15px;
     overflow: visible;
-    font-family: 'Playfair Display', serif;
+    font-family: Helvetica, sans-serif;
 }
 header {
     display: flex;
@@ -26,6 +26,7 @@ header {
     background-color: #006f3b;
     padding-top: 6px;
     margin-left: 12%;
+    font-family: 'Playfair Display', serif
 }
 img {
     padding: 6px;
@@ -50,7 +51,7 @@ img {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    font-family: helvetica neue;
+    font-family: helvetica, sans-serif;
     color: #fff;
     font-size: 14px;
 }
@@ -70,7 +71,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: helvetica neue;
+    font-family: helvetica;
     font-kerning: .5em;
     font-size: 3em;
     font-weight: 400;
@@ -87,7 +88,7 @@ img {
     justify-content: left;
     align-items: center;
 /*     grid-area: 3/1/4/2; */
-    font-family: helvetica neue;
+    font-family: helvetica;
     font-size: 20px;
     font-weight: 300;
     height: 175px;
@@ -100,7 +101,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: helvetica neue;
+    font-family: helvetica;
     font-weight: 400;
     font-size: 3em;
     height: 100%;
@@ -116,7 +117,7 @@ img {
     align-items: center;
     justify-content: left;
 /*     grid-area: 3/1/4/2; */
-    font-family: helvetica neue;
+    font-family: helvetica;
     font-size: 20px;
     font-weight: 300;
     height: 175px;
@@ -129,7 +130,7 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: helvetica neue;
+    font-family: helvetica;
 /*     grid-area: 4/1/5/2; */
     font-size: 3em;
     font-weight: 400;
@@ -146,7 +147,7 @@ img {
     align-items: center;
     justify-content: left;
 /*     grid-area: 4/1/5/2; */
-    font-family: helvetica neue;
+    font-family: helvetica;
     font-size: 20px;
     font-weight: 300;
     height: 175px;
@@ -179,7 +180,7 @@ img {
     text-align: center;
     justify-content: space-around;
     align-items: center;
-    font-family: helvetica neue;
+    font-family: helvetica;
     height: 55px;
     padding-top: 10px;
     padding-bottom: 5px;
@@ -217,7 +218,7 @@ input:checked {
     padding: 8px;
     width: 100%;
     background: white;
-    background: rgb(251, 175, 76);
+    background: rgb(255, 221, 176);
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
     border: 1px solid black;
     border-radius: 4px;
@@ -288,7 +289,7 @@ input:checked {
 #toChart a{
     text-decoration: none;
     color: black;
-    font-family: helvetica neue;
+    font-family: helvetica;
 }
 #toChart:hover{
     background-color: rgba(236, 236, 236)
@@ -304,7 +305,7 @@ input:checked {
     width: 100px;
     margin: 10% 0 0 70%;
     font-size: 1em;
-    font-family: helvetica neue;
+    font-family: helvetica;
     border: 1px solid black;
     background: rgba(121, 197, 209, 0.8);
     border-radius: 5px;
@@ -315,7 +316,7 @@ input:checked {
 #mapTobtn a{
     text-decoration: none;
     color: black;
-    font-family: helvetica neue;
+    font-family: helvetica;
 }
 #mapTobtn:hover{
     background-color: rgba(236, 236, 236)
