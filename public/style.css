@@ -28,7 +28,7 @@ header {
     margin-left: 12%;
     font-family: 'Playfair Display', serif
 }
-img {
+.printer {
     padding: 6px;
     height: 100px;
     filter: drop-shadow(2px 4px 5px #4c4c4c);
@@ -239,7 +239,21 @@ input:checked {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.4);
     cursor: pointer
-
+}
+.close-btn{
+    text-align: center;
+    margin-left: 10px;
+    padding: 6px;
+    height: auto;
+    width: auto;
+    background: rgb(153, 194, 207);
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    cursor: pointer
+}
+.close-btn:hover {
+    background-color: rgba(236, 236, 236)
 }
 #zoomBtn:hover {
     background-color: rgba(236, 236, 236)
@@ -270,6 +284,21 @@ input:checked {
     font-size: 25px;
     padding-left: 44%;
    
+}
+.groupPhoto{
+    width: 50% !important;
+}
+#aboutScreen {
+    width: 50%;
+    background-color: rgba(255,255,255,.8);
+    z-index: 20;
+    display: none;
+    position: absolute;
+    padding: 30px;
+    text-align: center;
+    top: 25%;
+    left: 25%;
+    border-radius: 15px;
 }
 #toChart {
     grid-column: 2/3;
@@ -334,6 +363,9 @@ input:checked {
     background-color: #ededed;
     border-radius: 5px;
     display: none;
+}
+a {
+    text-decoration: none;
 }
 @media print {
    body {

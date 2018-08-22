@@ -45,4 +45,14 @@
      }
      window.setTimeout(() => window.print(), 100)
     }
+
+    function openAbout() {
+      aboutDiv = document.getElementById('aboutScreen')
+      aboutDiv.style = 'display: block'
+    }
+
+    function closeAbout() {
+      aboutDiv = document.getElementById('aboutScreen')
+      aboutDiv.style = 'display: none'
+    }
     let vermont = new Vermont
