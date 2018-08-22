@@ -13,6 +13,7 @@ span.class[div]{
     background-color: #006f3b;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 15px 0 15px;
     overflow: visible;
     font-family: 'Playfair Display', serif;
 }
