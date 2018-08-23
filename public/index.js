@@ -46,7 +46,8 @@
      window.setTimeout(() => window.print(), 100)
     }
 
-    function openAbout() {
+    function openAbout(event) {
+      event.stopPropagation()
       aboutDiv = document.getElementById('aboutScreen')
       aboutDiv.style = 'display: block'
     }
@@ -54,5 +55,11 @@
     function closeAbout() {
       aboutDiv = document.getElementById('aboutScreen')
       aboutDiv.style = 'display: none'
+      console.log('close fired')
     }
+    aboutDiv = document.getElementById('aboutScreen')
+    aboutDiv.addEventListener('click', (event) => {
+      console.log('close canceled')
+      event.stopPropagation()})
+    window.addEventListener('click', closeAbout)
     let vermont = new Vermont
