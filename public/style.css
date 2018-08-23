@@ -89,6 +89,7 @@ header {
     grid-column: 1/2;
     grid-row: 2/5;
     background-color: #006f3b;
+    justify-content: flex-start;
 }
 #bagsOdometer {
     display: flex;
