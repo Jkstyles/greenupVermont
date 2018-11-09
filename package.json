@@ -1,10 +1,29 @@
 {
-  "buildpacks": [
-    {
-      "url": "https://github.com/Jkstyles/greenupVermont"
-    },
-    {
-      "url": "heroku/nodejs"
-    }
-  ]
+  "name": "greenupvermont",
+  "version": "1.0.0",
+  "description": "heroku hosting setup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jkstyles/greenupVermont.git"
+  },
+  "engines": {
+    "node": "10.3.0"
+  },
+  "keywords": [
+    "heroku"
+  ],
+  "author": "jake",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jkstyles/greenupVermont/issues"
+  },
+  "homepage": "https://github.com/Jkstyles/greenupVermont#readme",
+  "dependencies": {
+    "firebase-app": "0.0.1",
+    "firebase-auth": "^0.1.2"
+  }
 }
